@@ -11,3 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initialised the project (#1)
 - CHANGELOG.md using Keep a Changelog standard. (#1)
+
+### Removed
+
+- Example project files. (#2)
