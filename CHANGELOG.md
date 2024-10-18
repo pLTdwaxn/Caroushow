@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - asdf config file to fix runtime versions ([#5](https://github.com/pLTdwaxn/Caroushow/issues/5)).
 - A button to pick an image via PhotoKit Photo Picker [#9](https://github.com/pLTdwaxn/Caroushow/issues/9).
 - Ability to tap and zoom the image [#13](https://github.com/pLTdwaxn/Caroushow/issues/13)
+- jest-expo library for testing [#15](https://github.com/pLTdwaxn/Caroushow/issues/15).
 
 ### Changed
 
