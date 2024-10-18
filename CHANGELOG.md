@@ -20,8 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Bumped Nodejs version to 23.0.0 [#10](https://github.com/pLTdwaxn/Caroushow/issues/10)
+- "Select an Image" button moved to inside the ImageContainer [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
 
 ### Removed
 
 - Example project files. (#2)
 - Example components [#17](https://github.com/pLTdwaxn/Caroushow/issues/17)
+- Placeholder image [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
