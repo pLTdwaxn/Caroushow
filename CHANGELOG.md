@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A button to pick an image via PhotoKit Photo Picker [#9](https://github.com/pLTdwaxn/Caroushow/issues/9).
 - Ability to tap and zoom the image [#13](https://github.com/pLTdwaxn/Caroushow/issues/13)
 - jest-expo library for testing [#15](https://github.com/pLTdwaxn/Caroushow/issues/15).
+- Ability to crop an image into 3 columns [#23](https://github.com/pLTdwaxn/Caroushow/issues/23)
 
 ### Changed
 
