@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CHANGELOG.md using Keep a Changelog standard. (#1)
 - An image viewer to show a fixture image on the index page (#6).
 - asdf config file to fix runtime versions ([#5](https://github.com/pLTdwaxn/Caroushow/issues/5)).
+- A button to pick an image via PhotoKit Photo Picker [#9](https://github.com/pLTdwaxn/Caroushow/issues/9).
 
 ### Removed
 
