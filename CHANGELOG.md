@@ -24,3 +24,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Example project files. (#2)
+- Example components [#17](https://github.com/pLTdwaxn/Caroushow/issues/17)
