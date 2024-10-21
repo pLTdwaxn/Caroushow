@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to tap and zoom the image [#13](https://github.com/pLTdwaxn/Caroushow/issues/13)
 - jest-expo library for testing [#15](https://github.com/pLTdwaxn/Caroushow/issues/15).
 - Ability to crop an image into 3 columns [#23](https://github.com/pLTdwaxn/Caroushow/issues/23)
+- ActionsBar component under ImageViewer [#25](https://github.com/pLTdwaxn/Caroushow/issues/25)
 
 ### Changed
 

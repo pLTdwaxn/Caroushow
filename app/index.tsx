@@ -6,8 +6,10 @@ import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 
 import ImageCropper from "./ImageCropper";
+
 import ImageViewer from "@/components/ImageViewer";
 import ImageSelectButton from "@/components/ImageSelectButton";
+import ActionsBar from "@/components/ActionsBar";
 
 /*
   Define the workflow here.
@@ -104,10 +106,12 @@ export default function Index() {
           <View style={[styles.imageContainer, viewerStyle]}>
             <ImageViewer imgSource={image} />
           </View>
-          <>
+          <ActionsBar>
             <Button title="Reset" onPress={resetImage} />
-            <Button title="Run!" onPress={saveImageAsync} />
-          </>
+            <Button title="Ratio" />
+            <Button title="Quality" />
+            <Button title="Save" onPress={saveImageAsync} />
+          </ActionsBar>
         </>
       ) : (
         <View style={[styles.imageContainer, viewerStyle]}>
