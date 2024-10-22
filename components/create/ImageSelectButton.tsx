@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import Button from "./Button";
+import Button from "../shared/Button";
 
 type Props = {
   onPress: () => void;
