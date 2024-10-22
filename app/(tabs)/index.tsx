@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { View, Dimensions, Button, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 
-import ImageCropper from "./ImageCropper";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import ImageViewer from "@/components/ImageViewer";
-import ImageSelectButton from "@/components/ImageSelectButton";
-import ActionsBar from "@/components/ActionsBar";
+import ImageCropper from "../ImageCropper";
+
+import ImageViewer from "@/components/create/ImageViewer";
+import ImageSelectButton from "@/components/create/ImageSelectButton";
+import ActionsBar from "@/components/create/ActionsBar";
+import Button from "@/components/shared/Button";
 
 /*
   Define the workflow here.
@@ -27,19 +30,19 @@ import ActionsBar from "@/components/ActionsBar";
   3. Run the image cropper if the "Run!" button is pressed.
 */
 
-const SocialMedia = [
-  {
-    name: "Instagram",
-    imgRatio: {
-      width: 4,
-      height: 5,
-    },
-  },
-];
-
 export default function Index() {
   const [image, setImage] = useState<string | null>(null);
   const [status, requestPermission] = MediaLibrary.usePermissions();
+
+  const SocialMedia = [
+    {
+      name: "Instagram",
+      imgRatio: {
+        width: 4,
+        height: 5,
+      },
+    },
+  ];
 
   if (status === null) {
     requestPermission();
@@ -54,6 +57,8 @@ export default function Index() {
     : { width: 1, height: 1 };
 
   const { width, height } = socialMediaImageRatio;
+
+  const quality = "720p";
 
   const viewerStyle = {
     width: Dimensions.get("window").width,
@@ -74,13 +79,15 @@ export default function Index() {
     setImage(null);
   };
 
+  const ImageCropperOptions = {
+    rows: 1,
+    cols: 3,
+    compress: 1,
+  };
+
   const runImageCropper = async () => {
     if (image) {
-      const imageCropper = new ImageCropper(image, {
-        rows: 1,
-        cols: 3,
-        compress: 1,
-      });
+      const imageCropper = new ImageCropper(image, ImageCropperOptions);
 
       return await imageCropper.run();
     }
@@ -107,10 +114,20 @@ export default function Index() {
             <ImageViewer imgSource={image} />
           </View>
           <ActionsBar>
-            <Button title="Reset" onPress={resetImage} />
-            <Button title="Ratio" />
-            <Button title="Quality" />
-            <Button title="Save" onPress={saveImageAsync} />
+            <Button
+              label={<Ionicons name="refresh-outline" size={24} />}
+              onPress={resetImage}
+            />
+            <Button label={`${width}:${height}`} disabled={true} />
+            <Button
+              label={`${ImageCropperOptions.rows}x${ImageCropperOptions.cols}`}
+              disabled={true}
+            />
+            <Button label={quality} disabled={true} />
+            <Button
+              label={<Ionicons name="download-outline" size={24} />}
+              onPress={saveImageAsync}
+            />
           </ActionsBar>
         </>
       ) : (
