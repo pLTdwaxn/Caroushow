@@ -10,7 +10,7 @@ Caroushow helps create contiguous image crops so they still look like one photo 
 
 ## Get started
 
-There is not an official release jet. You can build the development version with npm and run it with Expo Go.
+There is not an official release yet. You can build the development version with npm and run it with Expo Go.
 
 1. Install dependencies
 
