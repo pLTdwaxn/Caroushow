@@ -12,7 +12,8 @@ export default function ActionsBar({ children }: props) {
 const styles = StyleSheet.create({
   actionsBar: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    padding: 10,
+    justifyContent: "space-evenly",
+    margin: 12,
+    width: "100%",
   },
 });
