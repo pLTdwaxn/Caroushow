@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bumped Nodejs version to 23.0.0 [#10](https://github.com/pLTdwaxn/Caroushow/issues/10)
 - "Select an Image" button moved to inside the ImageContainer [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
+- README.md now describe what Caroushow is [#27](https://github.com/pLTdwaxn/Caroushow/issues/27)
 
 ### Removed
 
