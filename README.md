@@ -1,16 +1,16 @@
 # Caroushow
 
-Caroushow is an app to create seamless carousal posts for your social media.
+Caroushow is an app that allows you to create seamless carousel posts for your social media.
 
 ## Description
 
-Even have had a photo which looks great whether zoomed in or out, but the cropping and resizing of a social media stops the audience from appreciating its fine details?
+Have you ever had a photo that looks great whether zoomed in or out, but the cropping and resizing on social media stops the audience from appreciating its fine details?
 
 Caroushow helps create contiguous image crops so they still look like one photo when swiped on and looked at up close!
 
 ## Get started
 
-There is not an official release jet. You can build the development version with npm and run with Expo Go.
+There is not an official release jet. You can build the development version with npm and run it with Expo Go.
 
 1. Install dependencies
 
