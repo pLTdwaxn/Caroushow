@@ -1,4 +1,4 @@
-# Caroushow 🟪🟦🟩🟧🟥
+# Caroushow
 
 Caroushow is an app to create seamless carousal posts for your social media.
 
