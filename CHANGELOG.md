@@ -19,12 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to crop an image into 3 columns [#23](https://github.com/pLTdwaxn/Caroushow/issues/23)
 - ActionsBar component under ImageViewer [#25](https://github.com/pLTdwaxn/Caroushow/issues/25)
 - Bottom navigation bar and tabs [#29](https://github.com/pLTdwaxn/Caroushow/issues/29)
+- Action Buttons now have disabled and press colors [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
 
 ### Changed
 
 - Bumped Nodejs version to 23.0.0 [#10](https://github.com/pLTdwaxn/Caroushow/issues/10)
 - "Select an Image" button moved to inside the ImageContainer [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
 - README.md now describe what Caroushow is [#27](https://github.com/pLTdwaxn/Caroushow/issues/27)
+- Justify ActionsBar to the flex-end (bottom of the CreateView) [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
 
 ### Removed
 
