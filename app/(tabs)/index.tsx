@@ -113,28 +113,32 @@ export default function Index() {
           <View style={[styles.imageContainer, viewerStyle]}>
             <ImageViewer imgSource={image} />
           </View>
-          <ActionsBar>
-            <Button
-              label={<Ionicons name="refresh-outline" size={24} />}
-              onPress={resetImage}
-            />
-            <Button label={`${width}:${height}`} disabled={true} />
-            <Button
-              label={`${ImageCropperOptions.rows}x${ImageCropperOptions.cols}`}
-              disabled={true}
-            />
-            <Button label={quality} disabled={true} />
-            <Button
-              label={<Ionicons name="download-outline" size={24} />}
-              onPress={saveImageAsync}
-            />
-          </ActionsBar>
         </>
       ) : (
         <View style={[styles.imageContainer, viewerStyle]}>
           <ImageSelectButton onPress={pickImageAsync} />
         </View>
       )}
+      <View style={styles.chinContainer}>
+        <ActionsBar>
+          <Button
+            label={<Ionicons name="refresh-outline" size={24} />}
+            disabled={!image}
+            onPress={resetImage}
+          />
+          <Button label={`${width}:${height}`} disabled={true} />
+          <Button
+            label={`${ImageCropperOptions.rows}x${ImageCropperOptions.cols}`}
+            disabled={true}
+          />
+          <Button label={quality} disabled={true} />
+          <Button
+            label={<Ionicons name="download-outline" size={24} />}
+            disabled={!image}
+            onPress={saveImageAsync}
+          />
+        </ActionsBar>
+      </View>
     </View>
   );
 }
@@ -149,5 +153,12 @@ const styles = StyleSheet.create({
   imageContainer: {
     backgroundColor: "#333",
     justifyContent: "center",
+    zIndex: 0,
+  },
+  chinContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "flex-end",
+    zIndex: 1,
   },
 });
