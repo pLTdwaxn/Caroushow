@@ -14,7 +14,10 @@ export default function ImageAdd({ label, disabled, onPress }: Props) {
       ) : (
         ({ pressed }) => (
           <Text
-            style={[{ color: pressed ? "#8cf" : "#5af" }, styles.buttonLabel]}
+            style={[
+              { color: pressed ? "#58A6FF" : "#007aff" },
+              styles.buttonLabel,
+            ]}
           >
             {label}
           </Text>

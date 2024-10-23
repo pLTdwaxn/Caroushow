@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "Select an Image" button moved to inside the ImageContainer [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
 - README.md now describe what Caroushow is [#27](https://github.com/pLTdwaxn/Caroushow/issues/27)
 - Justify ActionsBar to the flex-end (bottom of the CreateView) [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
+- Custom button label colors to match system button label color [#37](https://github.com/pLTdwaxn/Caroushow/issues/37)
 
 ### Removed
 
