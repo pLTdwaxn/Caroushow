@@ -14,22 +14,6 @@ import ImageSelectButton from "@/components/create/ImageSelectButton";
 import ActionsBar from "@/components/create/ActionsBar";
 import Button from "@/components/shared/Button";
 
-/*
-  Define the workflow here.
-
-  1. Select the target social media. Default is Instagram.
-  1.1. Read the compatible image ratio range from the fixture.
-  1.2. If there is no compatible image ratio, set the default ratio to 1:1.
-  1.3. Read the optimal image resolution from the fixture.
-  1.4. If there is no optimal image resolution, set the default resolution to 720x720.
-
-  2. Select an image from the device.
-  2.1. If an image is selected, hide the "Select an image" button and display the image.
-  2.2. Show the "Run!" button.
-
-  3. Run the image cropper if the "Run!" button is pressed.
-*/
-
 export default function Index() {
   const [image, setImage] = useState<string | null>(null);
   const [status, requestPermission] = MediaLibrary.usePermissions();

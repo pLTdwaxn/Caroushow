@@ -36,3 +36,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Placeholder image [#19](https://github.com/pLTdwaxn/Caroushow/issues/19)
 - Default Expo project reset script [#31](https://github.com/pLTdwaxn/Caroushow/issues/31)
 - Unused Node packages [#35](https://github.com/pLTdwaxn/Caroushow/issues/35)
+- Press on image to switch between content fit [#39](https://github.com/pLTdwaxn/Caroushow/issues/39)
