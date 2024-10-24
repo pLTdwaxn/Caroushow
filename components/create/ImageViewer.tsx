@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 
 type Props = {
   imgSource: string | null;
+  contentFit: "contain" | "cover";
 };
 
 export default function ImageViewer({ imgSource }: Props) {

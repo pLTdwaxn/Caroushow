@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet, Pressable } from "react-native";
 
-import { Image } from "expo-image";
+import { ImageContentFit } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 
@@ -12,10 +12,12 @@ import ImageCropper from "../ImageCropper";
 import ImageViewer from "@/components/create/ImageViewer";
 import ImageSelectButton from "@/components/create/ImageSelectButton";
 import ActionsBar from "@/components/create/ActionsBar";
+import CropGuide from "@/components/create/CropGuide";
 import Button from "@/components/shared/Button";
 
 export default function Index() {
   const [image, setImage] = useState<string | null>(null);
+  const [contentFit, setContentFit] = useState<"contain" | "cover">("contain");
   const [status, requestPermission] = MediaLibrary.usePermissions();
 
   const SocialMedia = [
@@ -27,6 +29,10 @@ export default function Index() {
       },
     },
   ];
+
+  const switchContentFit = () => {
+    setContentFit(contentFit === "contain" ? "cover" : "contain");
+  };
 
   if (status === null) {
     requestPermission();
@@ -93,11 +99,12 @@ export default function Index() {
   return (
     <View style={styles.container}>
       {image ? (
-        <>
+        <Pressable onPress={switchContentFit}>
           <View style={[styles.imageContainer, viewerStyle]}>
-            <ImageViewer imgSource={image} />
+            <ImageViewer imgSource={image} contentFit={contentFit} />
+            <CropGuide rows={1} columns={3} ratio={socialMediaImageRatio} />
           </View>
-        </>
+        </Pressable>
       ) : (
         <View style={[styles.imageContainer, viewerStyle]}>
           <ImageSelectButton onPress={pickImageAsync} />
@@ -130,19 +137,17 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     alignItems: "center",
     borderWidth: 0,
   },
   imageContainer: {
-    backgroundColor: "#333",
+    backgroundColor: "#000",
     justifyContent: "center",
-    zIndex: 0,
   },
   chinContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     justifyContent: "flex-end",
-    zIndex: 1,
   },
 });
