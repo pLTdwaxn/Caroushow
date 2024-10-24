@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Dimensions, StyleSheet, Pressable } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
 import { ImageContentFit } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
@@ -17,7 +17,6 @@ import Button from "@/components/shared/Button";
 
 export default function Index() {
   const [image, setImage] = useState<string | null>(null);
-  const [contentFit, setContentFit] = useState<"contain" | "cover">("contain");
   const [status, requestPermission] = MediaLibrary.usePermissions();
 
   const SocialMedia = [
@@ -29,10 +28,6 @@ export default function Index() {
       },
     },
   ];
-
-  const switchContentFit = () => {
-    setContentFit(contentFit === "contain" ? "cover" : "contain");
-  };
 
   if (status === null) {
     requestPermission();
@@ -99,12 +94,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       {image ? (
-        <Pressable onPress={switchContentFit}>
-          <View style={[styles.imageContainer, viewerStyle]}>
-            <ImageViewer imgSource={image} contentFit={contentFit} />
-            <CropGuide rows={1} columns={3} ratio={socialMediaImageRatio} />
-          </View>
-        </Pressable>
+        <View style={[styles.imageContainer, viewerStyle]}>
+          <ImageViewer imgSource={image} />
+        </View>
       ) : (
         <View style={[styles.imageContainer, viewerStyle]}>
           <ImageSelectButton onPress={pickImageAsync} />

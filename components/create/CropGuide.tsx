@@ -16,12 +16,29 @@ export default function cropGuide({ rows, columns, ratio }: Props) {
   const gridStyle = {
     width: width,
     height: height,
-  } as any;
+  };
+
+  const renderColumns = () => {
+    const columnsArray = [];
+    for (let i = 0; i < columns; i++) {
+      columnsArray.push(
+        <View
+          key={i}
+          style={{
+            flex: 1,
+            borderLeftWidth: i === 0 ? 0 : 0.2,
+            borderColor: "#fff",
+          }}
+        />
+      );
+    }
+    return columnsArray;
+  };
 
   return (
     <View style={styles.cropGuide}>
       <View id="topShade" style={styles.topShade}></View>
-      <View style={[gridStyle, styles.cropGrids]}></View>
+      <View style={[gridStyle, styles.cropGrids]}>{renderColumns()}</View>
       <View id="bottomShade" style={styles.bottomShade}></View>
     </View>
   );
@@ -36,6 +53,8 @@ const styles = StyleSheet.create({
   cropGrids: {
     borderWidth: 0.2,
     borderColor: "#fff",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   topShade: {
     width: "100%",
