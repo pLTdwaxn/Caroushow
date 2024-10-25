@@ -1,20 +1,48 @@
+import { connect } from "react-redux";
+
+import { store } from "@/store";
+import { setImage } from "../../store/actions";
+
 import { StyleSheet } from "react-native";
+
 import { Image } from "expo-image";
+import * as ImagePicker from "expo-image-picker";
 
 import CropGuide from "@/components/create/CropGuide";
+import ImageSelectButton from "@/components/create/ImageSelectButton";
 
 type Props = {
-  imgSource: string | null;
+  uri: string;
+  width: number;
+  height: number;
 };
 
-export default function ImageViewer({ imgSource }: Props) {
-  return (
+const ImageViewer = (image: Props) => {
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      let image = {
+        uri: result.assets[0].uri,
+        width: result.assets[0].width,
+        height: result.assets[0].height,
+      };
+
+      store.dispatch(setImage(image));
+    }
+  };
+
+  return image.uri ? (
     <>
-      <Image source={imgSource} style={styles.imageStyle} />
-      <CropGuide rows={1} columns={3} ratio={{ width: 4, height: 5 }} />
+      <Image source={{ uri: image.uri }} style={styles.imageStyle} />
+      <CropGuide />
     </>
+  ) : (
+    <ImageSelectButton onPress={pickImageAsync} />
   );
-}
+};
 
 const styles = StyleSheet.create({
   imageStyle: {
@@ -23,3 +51,15 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 });
+
+const mapStateToProps = (state: any) => ({
+  uri: state.image.uri,
+  width: state.image.width,
+  height: state.image.height,
+});
+
+const mapDispatchToProps = {
+  setImage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageViewer);

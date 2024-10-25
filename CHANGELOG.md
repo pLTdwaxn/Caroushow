@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README.md now describe what Caroushow is [#27](https://github.com/pLTdwaxn/Caroushow/issues/27)
 - Justify ActionsBar to the flex-end (bottom of the CreateView) [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
 - Custom button label colors to match system button label color [#37](https://github.com/pLTdwaxn/Caroushow/issues/37)
+- Turned to Redux for global state management [#43](https://github.com/pLTdwaxn/Caroushow/issues/43)
 
 ### Removed
 
