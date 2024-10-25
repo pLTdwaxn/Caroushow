@@ -6,15 +6,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Button from "@/components/shared/Button";
 
-import ImageCropper from "@/app/ImageCropper";
+import { ImagePickerAsset } from "expo-image-picker";
+
+import ImageCropper from "@/core/ImageCropper";
 
 type Props = {
-  image: {
-    uri: string;
-  };
+  image: ImagePickerAsset | undefined;
   cropperParams: {
     rows: number;
-    cols: number;
+    columns: number;
+    ratio: {
+      width: number;
+      height: number;
+    };
     compress: number;
   };
 };
@@ -26,31 +30,29 @@ const RunCropperButton = ({ image, cropperParams }: Props) => {
     requestPermission();
   }
 
-  // const runImageCropper = async () => {
-  //   if (image) {
-  //     const imageCropper = new ImageCropper(image.uri, cropperParams);
+  const runImageCropper = async () => {
+    if (image) {
+      return await ImageCropper.getInstance(image, cropperParams).run();
+    }
+    return [];
+  };
 
-  //     return await imageCropper.run();
-  //   }
-  //   return [];
-  // };
-
-  // const saveImageAsync = async () => {
-  //   try {
-  //     const croppedImages = await runImageCropper();
-  //     for (const croppedImage of croppedImages) {
-  //       await MediaLibrary.saveToLibraryAsync(croppedImage.uri);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const saveImageAsync = async () => {
+    try {
+      const croppedImages = await runImageCropper();
+      for (const croppedImage of croppedImages) {
+        await MediaLibrary.saveToLibraryAsync(croppedImage.uri);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Button
       label={<Ionicons name="download-outline" size={24} />}
-      disabled={true}
-      // onPress={saveImageAsync}
+      disabled={!image}
+      onPress={saveImageAsync}
     />
   );
 };
