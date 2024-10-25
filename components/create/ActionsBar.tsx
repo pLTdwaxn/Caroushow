@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 
-import ResetImageButton from "@/components/create/resetImageButton";
+import ResetImageButton from "@/components/create/imageResetButton";
 import AspectRatioButton from "./aspectRatioButton";
 import GridLayoutButton from "./gridLayoutButton";
 import QualityButton from "./qualityButton";
