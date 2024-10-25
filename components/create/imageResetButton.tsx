@@ -11,7 +11,7 @@ type Props = {
   uri: string;
 };
 
-const ResetImageButton = ({ uri }: Props) => {
+const ImageResetButton = ({ uri }: Props) => {
   return (
     <Button
       label={<Ionicons name="refresh-outline" size={24} />}
@@ -24,7 +24,7 @@ const ResetImageButton = ({ uri }: Props) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  uri: state.image.uri,
+  uri: state.image?.uri,
 });
 
-export default connect(mapStateToProps)(ResetImageButton);
+export default connect(mapStateToProps)(ImageResetButton);
