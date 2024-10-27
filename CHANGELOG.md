@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Justify ActionsBar to the flex-end (bottom of the CreateView) [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
 - Custom button label colors to match system button label color [#37](https://github.com/pLTdwaxn/Caroushow/issues/37)
 - Turned to Redux for global state management [#43](https://github.com/pLTdwaxn/Caroushow/issues/43)
+- Cropping starts at an offset to Y axis to vertically center the cropped pieces [#46](https://github.com/pLTdwaxn/Caroushow/issues/46)
 
 ### Removed
 

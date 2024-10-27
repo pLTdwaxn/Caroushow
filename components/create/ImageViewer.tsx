@@ -13,10 +13,9 @@ type Props = {
 
 const ImageViewer = ({ uri }: Props) => {
   return uri ? (
-    <>
-      <Image source={{ uri: uri }} style={styles.imageStyle} />
+    <Image source={{ uri: uri }} style={styles.imageStyle} contentFit="contain">
       <CropGuide />
-    </>
+    </Image>
   ) : (
     <ImageSelectButton />
   );
@@ -26,7 +25,6 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: "100%",
     height: "100%",
-    resizeMode: "contain",
   },
 });
 
