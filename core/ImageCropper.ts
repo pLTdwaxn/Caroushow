@@ -1,4 +1,4 @@
-import { ImagePickerAsset } from 'expo-image-picker';
+import { ImagePickerAsset } from "expo-image-picker";
 import {
   ImageResult,
   manipulateAsync,
@@ -26,7 +26,10 @@ export default class ImageCropper {
     this.options = options;
   }
 
-  static getInstance(image: ImagePickerAsset, options: CropperOptions): ImageCropper {
+  static getInstance(
+    image: ImagePickerAsset,
+    options: CropperOptions
+  ): ImageCropper {
     if (!instance) {
       instance = new ImageCropper(image, options);
     } else {
@@ -49,9 +52,12 @@ export default class ImageCropper {
 
     const { rows, columns, compress } = this.options;
     const { width, height } = this.image;
+    const { ratio } = this.options;
 
     const pieceWidth = width / columns;
-    const pieceHeight = height / rows;
+    const pieceHeight = (pieceWidth / ratio.width) * ratio.height;
+
+    const offsetY = (height - pieceHeight * rows) / 2;
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < columns; col++) {
@@ -61,9 +67,14 @@ export default class ImageCropper {
             {
               crop: {
                 originX: col * pieceWidth,
-                originY: row * pieceHeight,
+                originY: row * pieceHeight + offsetY,
                 width: pieceWidth,
                 height: pieceHeight,
+              },
+            },
+            {
+              resize: {
+                height: 720,
               },
             },
           ],

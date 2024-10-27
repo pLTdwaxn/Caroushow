@@ -3,6 +3,8 @@ const initialState = {
   columns: 3,
   ratio: { width: 4, height: 5 },
   compress: 1,
+  origin: { x: 0, y: 0 },
+  size: { width: 0, height: 0 },
 };
 
 export const cropperParamsReducer = (state = initialState, action: any) => {
