@@ -2,9 +2,9 @@ const initialState = {
   rows: 1,
   columns: 3,
   ratio: { width: 4, height: 5 },
-  compress: 1,
   origin: { x: 0, y: 0 },
-  size: { width: 0, height: 0 },
+  resize: 1080,
+  compress: 1,
 };
 
 export const cropperParamsReducer = (state = initialState, action: any) => {

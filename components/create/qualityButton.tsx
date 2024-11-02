@@ -1,7 +1,17 @@
+import { connect } from "react-redux";
+
 import Button from "@/components/shared/Button";
 
-const QualityButton = () => {
-  return <Button label="720p" disabled={true} />;
+type Props = {
+  resize_quality: number;
 };
 
-export default QualityButton;
+const QualityButton = ({ resize_quality }: Props) => {
+  return <Button label={`${resize_quality}p`} />;
+};
+
+const mapStateToProps = (state: any) => ({
+  resize_quality: state.cropperParams?.resize,
+});
+
+export default connect(mapStateToProps)(QualityButton);
