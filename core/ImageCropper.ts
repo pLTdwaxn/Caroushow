@@ -12,6 +12,7 @@ type CropperOptions = {
     width: number;
     height: number;
   };
+  resize: number;
   compress: number;
 };
 
@@ -50,9 +51,8 @@ export default class ImageCropper {
   async run() {
     const croppedImages: ImageResult[] = [];
 
-    const { rows, columns, compress } = this.options;
+    const { rows, columns, compress, ratio, resize } = this.options;
     const { width, height } = this.image;
-    const { ratio } = this.options;
 
     const pieceWidth = width / columns;
     const pieceHeight = (pieceWidth / ratio.width) * ratio.height;
@@ -74,7 +74,7 @@ export default class ImageCropper {
             },
             {
               resize: {
-                height: 720,
+                height: resize,
               },
             },
           ],
