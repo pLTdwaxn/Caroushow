@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bottom navigation bar and tabs [#29](https://github.com/pLTdwaxn/Caroushow/issues/29)
 - Action Buttons now have disabled and press colors [#33](https://github.com/pLTdwaxn/Caroushow/issues/33)
 - Crop Guide component for previewing the crop area [#41](https://github.com/pLTdwaxn/Caroushow/issues/41)
+- An APP icon! [#51](https://github.com/pLTdwaxn/Caroushow/issues/51)
 
 ### Changed
 
