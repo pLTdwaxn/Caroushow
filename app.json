@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Caroushow",
-    "slug": "Caroushow",
+    "slug": "caroushow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "83f0cbda-1747-42ff-a3e1-9f5951b54261"
+      }
+    },
+    "owner": "gaussianpendulum"
   }
 }
