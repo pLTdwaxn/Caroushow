@@ -54,7 +54,7 @@ export default class ImageCropper {
     const { rows, columns, compress, ratio, resize } = this.options;
     const { width, height } = this.image;
 
-    const pieceWidth = width / columns;
+    const pieceWidth = Math.floor(width / columns); // Round here to avoid rounding during cropping which may cause blank gaps
     const pieceHeight = (pieceWidth / ratio.width) * ratio.height;
 
     const offsetY = (height - pieceHeight * rows) / 2;
