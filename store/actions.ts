@@ -11,7 +11,7 @@ export const setImage = (image: ImagePickerAsset) => ({
 
 export const resetImage = () => ({
   type: SET_IMAGE,
-  payload: { uri: null, width: null, height: null },
+  payload: null,
 });
 
 export const setResults = (results: ImageResult | null) => ({
