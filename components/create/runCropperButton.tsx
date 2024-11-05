@@ -20,6 +20,7 @@ type Props = {
       height: number;
     };
     compress: number;
+    resize: number;
   };
 };
 

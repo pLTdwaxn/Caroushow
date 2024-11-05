@@ -7,7 +7,7 @@ type Props = {
 };
 
 const QualityButton = ({ resize_quality }: Props) => {
-  return <Button label={`${resize_quality}p`} />;
+  return <Button label={`${resize_quality}p`} disabled={true} />;
 };
 
 const mapStateToProps = (state: any) => ({
