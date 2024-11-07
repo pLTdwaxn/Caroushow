@@ -14,7 +14,7 @@ export const resetImage = () => ({
   payload: null,
 });
 
-export const setResults = (results: ImageResult | null) => ({
+export const setResults = (results: ImageResult[] | []) => ({
   type: SET_RESULTS,
   payload: results,
 });
