@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The Cropper now correctly resizes the cropped pieces to the correct size [#60](https://github.com/pLTdwaxn/Caroushow/issues/60)
 - The Cropper now resizes by the shorter side of the cropped piece [#60](https://github.com/pLTdwaxn/Caroushow/issues/60)
 - Run Cropper Button now is disabled during and after running [#68](https://github.com/pLTdwaxn/Caroushow/issues/68)
+- Reworked some Redux logic. Image Cropper reads from the redux store directly now. [#70](https://github.com/pLTdwaxn/Caroushow/issues/70)
 
 ### Removed
 
