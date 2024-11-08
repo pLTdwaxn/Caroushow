@@ -1,3 +1,7 @@
+import { store } from "@/store";
+
+import { setResults } from "@/store/actions";
+
 import { ImagePickerAsset } from "expo-image-picker";
 import {
   ImageResult,
@@ -22,31 +26,30 @@ export default class ImageCropper {
   image: ImagePickerAsset;
   options: CropperOptions;
 
-  private constructor(image: ImagePickerAsset, options: CropperOptions) {
-    this.image = image;
-    this.options = options;
+  private constructor() {
+    // this.image = image;
+    // this.options = options;
+    this.image = store.getState().image;
+    this.options = store.getState().cropperParams;
   }
 
   static getInstance(
-    image: ImagePickerAsset,
-    options: CropperOptions
+    // image: ImagePickerAsset,
+    // options: CropperOptions
   ): ImageCropper {
     if (!instance) {
-      instance = new ImageCropper(image, options);
-    } else {
-      instance.setImage(image);
-      instance.setOptions(options);
+      instance = new ImageCropper();
     }
     return instance;
   }
 
-  setImage(image: ImagePickerAsset) {
-    this.image = image;
-  }
+  // setImage(image: ImagePickerAsset) {
+  //   this.image = image;
+  // }
 
-  setOptions(options: CropperOptions) {
-    this.options = options;
-  }
+  // setOptions(options: CropperOptions) {
+  //   this.options = options;
+  // }
 
   async run() {
     const croppedImages: ImageResult[] = [];
@@ -83,6 +86,7 @@ export default class ImageCropper {
       }
     }
 
-    return croppedImages;
+    // return croppedImages;
+    store.dispatch(setResults(croppedImages));
   }
 }

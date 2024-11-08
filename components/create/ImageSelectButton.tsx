@@ -7,6 +7,8 @@ import * as ImagePicker from "expo-image-picker";
 
 import Button from "@/components/shared/Button";
 
+import ImageCropper from "@/core/ImageCropper";
+
 const ImageSelectButton = () => {
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -21,6 +23,7 @@ const ImageSelectButton = () => {
       };
 
       store.dispatch(setImage(image));
+      ImageCropper.getInstance().run();
     }
   };
 
