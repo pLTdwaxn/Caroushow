@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Run Cropper Button now is disabled during and after running [#68](https://github.com/pLTdwaxn/Caroushow/issues/68)
 - Reworked some Redux logic. Image Cropper reads from the redux store directly now. [#70](https://github.com/pLTdwaxn/Caroushow/issues/70)
 - Bumped Nodejs and npm packages versions. [#72](https://github.com/pLTdwaxn/Caroushow/issues/72)
+- Fixed CropGuide not rendering over the selected image [#74](https://github.com/pLTdwaxn/Caroushow/issues/74)
 
 ### Removed
 
