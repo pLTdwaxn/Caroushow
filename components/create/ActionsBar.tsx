@@ -1,13 +1,22 @@
-import { PropsWithChildren } from "react";
 import { View, StyleSheet } from "react-native";
 
-type props = {
-  children: React.ReactNode;
-};
+import ResetImageButton from "@/components/create/resetImageButton";
+import AspectRatioButton from "./aspectRatioButton";
+import GridLayoutButton from "./gridLayoutButton";
+import QualityButton from "./qualityButton";
+import RunCropperButton from "./runCropperButton";
 
-export default function ActionsBar({ children }: props) {
-  return <View style={styles.actionsBar}>{children}</View>;
-}
+const ActionsBar = () => {
+  return (
+    <View style={styles.actionsBar}>
+      <ResetImageButton />
+      <AspectRatioButton />
+      <GridLayoutButton />
+      <QualityButton />
+      <RunCropperButton />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   actionsBar: {
@@ -17,3 +26,5 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
+
+export default ActionsBar;

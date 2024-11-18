@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { connect } from "react-redux";
 
-type Props = {
+import { View, StyleSheet, Dimensions } from "react-native";
+
+type CropGuideProps = {
   rows: number;
   columns: number;
   ratio: {
@@ -9,7 +11,7 @@ type Props = {
   };
 };
 
-export default function cropGuide({ rows, columns, ratio }: Props) {
+const cropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
   const width = Dimensions.get("window").width;
   const height = (width / ratio.width / columns) * ratio.height;
 
@@ -42,7 +44,7 @@ export default function cropGuide({ rows, columns, ratio }: Props) {
       <View id="bottomShade" style={styles.bottomShade}></View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   cropGuide: {
@@ -68,3 +70,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
 });
+
+const mapStateToProps = (state: any) => ({
+  rows: state.cropperParams.rows,
+  columns: state.cropperParams.columns,
+  ratio: state.cropperParams.ratio,
+});
+
+export default connect(mapStateToProps)(cropGuide);
