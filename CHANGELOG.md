@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - jest-expo library for testing [#15](https://github.com/pLTdwaxn/Caroushow/issues/15).
 - Ability to crop an image into 3 columns [#23](https://github.com/pLTdwaxn/Caroushow/issues/23)
 - ActionsBar component under ImageViewer [#25](https://github.com/pLTdwaxn/Caroushow/issues/25)
+- Bottom navigation bar and tabs [#29](https://github.com/pLTdwaxn/Caroushow/issues/29)
 
 ### Changed
 
