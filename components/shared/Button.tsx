@@ -8,10 +8,18 @@ type Props = {
 
 export default function ImageAdd({ label, disabled, onPress }: Props) {
   return (
-    <Pressable style={[styles.button]} onPress={onPress}>
-      <Text style={[styles.buttonLabel, disabled ? { color: "#bbb" } : {}]}>
-        {label}
-      </Text>
+    <Pressable style={styles.button} onPress={onPress}>
+      {disabled ? (
+        <Text style={[{ color: "#ccc" }, styles.buttonLabel]}>{label}</Text>
+      ) : (
+        ({ pressed }) => (
+          <Text
+            style={[{ color: pressed ? "#8cf" : "#5af" }, styles.buttonLabel]}
+          >
+            {label}
+          </Text>
+        )
+      )}
     </Pressable>
   );
 }
@@ -24,6 +32,5 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontSize: 16,
-    color: "#5af",
   },
 });
