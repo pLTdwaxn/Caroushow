@@ -1,12 +1,9 @@
-import { Provider } from "react-redux";
-import { store } from "@/store";
-
 import { View, Dimensions, StyleSheet } from "react-native";
 
 import ImageViewer from "@/components/create/ImageViewer";
 import ActionsBar from "@/components/create/ActionsBar";
 
-export default function Index() {
+const Index = () => {
   const SocialMedia = [
     {
       name: "Instagram",
@@ -33,18 +30,16 @@ export default function Index() {
   };
 
   return (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <View style={[styles.imageContainer, viewerStyle]}>
-          <ImageViewer />
-        </View>
-        <View style={styles.chinContainer}>
-          <ActionsBar />
-        </View>
+    <View style={styles.container}>
+      <View style={[styles.imageContainer, viewerStyle]}>
+        <ImageViewer />
       </View>
-    </Provider>
+      <View style={styles.chinContainer}>
+        <ActionsBar />
+      </View>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -63,3 +58,5 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
 });
+
+export default Index;

@@ -1,14 +1,12 @@
-import { View, Text } from "react-native";
-
 import { Tabs } from "expo-router";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import CreateScreenHeader from "../../components/create/Header";
 
-export default function TabLayout() {
+const TabLayout = () => {
   return (
-    <Tabs initialRouteName="create">
+    <Tabs initialRouteName="index">
       <Tabs.Screen
         name="settings"
         options={{
@@ -55,4 +53,6 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
