@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Turned to Redux for global state management [#43](https://github.com/pLTdwaxn/Caroushow/issues/43)
 - Cropping starts at an offset to Y axis to vertically center the cropped pieces [#46](https://github.com/pLTdwaxn/Caroushow/issues/46)
 - Resize quality is now functional [[#53](https://github.com/pLTdwaxn/Caroushow/issues/53)]
+- `resetImage` action now sends a 'null' payload [#56](https://github.com/pLTdwaxn/Caroushow/issues/56)
 
 ### Removed
 
