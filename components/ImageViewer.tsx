@@ -1,27 +1,47 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { Image } from "expo-image";
+import { useState } from "react";
+import { StyleSheet, Dimensions, View, Pressable } from "react-native";
+import { Image, ImageContentFit } from "expo-image";
 
 type Props = {
   imgSource: string;
-  imgRatio: {
+  viewerRatio: {
     width: number;
     height: number;
   };
 };
 
-export default function ImageViewer({ imgSource, imgRatio }: Props) {
-  const { width, height } = imgRatio;
+export default function ImageViewer({ imgSource, viewerRatio }: Props) {
+  const { width, height } = viewerRatio;
+  const [contentFit, setContentFit] = useState<ImageContentFit>("contain");
 
-  console.log(imgRatio);
-
-  const imgStyle = {
+  const viewerStyle = {
     width: Dimensions.get("window").width,
     height: (Dimensions.get("window").width / width) * height,
   };
 
-  console.log(imgStyle);
+  const switchContentFit = () => {
+    setContentFit(contentFit === "contain" ? "cover" : "contain");
+  };
 
-  return <Image source={imgSource} style={imgStyle} />;
+  return (
+    <View style={[styles.imageContainer, viewerStyle]}>
+      <Pressable onPress={switchContentFit}>
+        <Image
+          source={imgSource}
+          style={styles.imageStyle}
+          contentFit={contentFit}
+        />
+      </Pressable>
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  imageContainer: {
+    backgroundColor: "#000",
+  },
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+  },
+});

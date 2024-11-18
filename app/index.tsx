@@ -25,7 +25,7 @@ export default function Index() {
     (media) => media.name === "Instagram"
   );
 
-  const imgRatio = targetSocialMedia
+  const socialMediaImageRatio = targetSocialMedia
     ? targetSocialMedia.imgRatio
     : { width: 1, height: 1 };
 
@@ -41,13 +41,11 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer
-          imgSource={image ? image : PlaceholderImage}
-          imgRatio={imgRatio}
-        />
-        <Button title="Select an image" onPress={pickImageAsync} />
-      </View>
+      <ImageViewer
+        imgSource={image ? image : PlaceholderImage}
+        viewerRatio={socialMediaImageRatio}
+      />
+      <Button title="Select an image" onPress={pickImageAsync} />
     </View>
   );
 }
@@ -55,13 +53,8 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#25292e",
-    alignItems: "center",
-    borderWidth: 0,
-  },
-  imageContainer: {
-    flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
     borderWidth: 0,
   },
 });
