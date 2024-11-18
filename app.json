@@ -37,6 +37,12 @@
         "projectId": "83f0cbda-1747-42ff-a3e1-9f5951b54261"
       }
     },
-    "owner": "gaussianpendulum"
+    "owner": "gaussianpendulum",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/83f0cbda-1747-42ff-a3e1-9f5951b54261"
+    }
   }
 }
