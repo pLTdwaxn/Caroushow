@@ -2,6 +2,9 @@
 
 Caroushow is an app that allows you to create seamless carousel posts for your social media.
 
+<img src="docs/assets/app.jpg" alt="The App showing how the selected image will be cropped" width="200"/>
+<img src="docs/assets/instagram_post_med.gif" alt="The three cropped images scroll like one on Instagram" width="200"/>
+
 ## Description
 
 Have you ever had a photo that looks great whether zoomed in or out, but the cropping and resizing on social media stops the audience from appreciating its fine details?
