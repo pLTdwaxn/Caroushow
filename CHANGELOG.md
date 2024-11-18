@@ -35,9 +35,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cropping starts at an offset to Y axis to vertically center the cropped pieces [#46](https://github.com/pLTdwaxn/Caroushow/issues/46)
 - Resize quality is now functional [[#53](https://github.com/pLTdwaxn/Caroushow/issues/53)]
 - `resetImage` action now sends a 'null' payload [#56](https://github.com/pLTdwaxn/Caroushow/issues/56)
-- `pieceWidth` is now calculated with `floor` to avoid rounding-caused blank row of pixel [[#59](https://github.com/pLTdwaxn/Caroushow/issues/59)]
+- `pieceWidth` is now calculated with `floor` to avoid rounding-caused blank row of pixel [#59](https://github.com/pLTdwaxn/Caroushow/issues/59)
 - The Cropper now correctly resizes the cropped pieces to the correct size [#60](https://github.com/pLTdwaxn/Caroushow/issues/60)
-- The Cropper now resizes by the shorter side of the cropped piece [[#60](https://github.com/pLTdwaxn/Caroushow/issues/60)]
+- The Cropper now resizes by the shorter side of the cropped piece [#60](https://github.com/pLTdwaxn/Caroushow/issues/60)
+- Run Cropper Button now is disabled during and after running [#68](https://github.com/pLTdwaxn/Caroushow/issues/68)
 
 ### Removed
 
