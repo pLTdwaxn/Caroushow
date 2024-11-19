@@ -1,4 +1,7 @@
 import { View, Dimensions, StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import { connect } from "react-redux";
 
 import ImageViewer from "@/components/create/ImageViewer";
 
@@ -15,7 +18,6 @@ const Index = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eee",
     alignItems: "center",
     borderWidth: 0,
   },
@@ -27,4 +29,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+const mapStateToProps = (state: any) => ({
+  image: state.image,
+});
+
+export default connect(mapStateToProps)(Index);
