@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bumped Nodejs and npm packages versions. [#72](https://github.com/pLTdwaxn/Caroushow/issues/72)
 - Fixed CropGuide not rendering over the selected image [#74](https://github.com/pLTdwaxn/Caroushow/issues/74)
 - Updated README.md with images. [#76](https://github.com/pLTdwaxn/Caroushow/issues/76)
+- Installed @types/cookie ^1.0.1. [#80](https://github.com/pLTdwaxn/Caroushow/issues/80)
 
 ### Removed
 
