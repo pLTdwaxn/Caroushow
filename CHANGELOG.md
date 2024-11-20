@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Crop Guide component for previewing the crop area [#41](https://github.com/pLTdwaxn/Caroushow/issues/41)
 - An APP icon! [#51](https://github.com/pLTdwaxn/Caroushow/issues/51)
 - EAS project config [[#63](https://github.com/pLTdwaxn/Caroushow/issues/63)]
+- Prebuild iOS with Expo New Architecture [#82](https://github.com/pLTdwaxn/Caroushow/issues/82)
 
 ### Changed
 
