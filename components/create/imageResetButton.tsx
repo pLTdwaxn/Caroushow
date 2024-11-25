@@ -27,4 +27,8 @@ const mapStateToProps = (state: any) => ({
   uri: state.image?.uri,
 });
 
-export default connect(mapStateToProps)(ImageResetButton);
+const mapDispatchToProps = {
+  resetImage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageResetButton);
