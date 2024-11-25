@@ -34,22 +34,12 @@ export default class ImageCropper {
   }
 
   static getInstance(
-    // image: ImagePickerAsset,
-    // options: CropperOptions
   ): ImageCropper {
     if (!instance) {
       instance = new ImageCropper();
     }
     return instance;
   }
-
-  // setImage(image: ImagePickerAsset) {
-  //   this.image = image;
-  // }
-
-  // setOptions(options: CropperOptions) {
-  //   this.options = options;
-  // }
 
   async run() {
     const croppedImages: ImageResult[] = [];
@@ -86,7 +76,6 @@ export default class ImageCropper {
       }
     }
 
-    // return croppedImages;
     store.dispatch(setResults(croppedImages));
   }
 }

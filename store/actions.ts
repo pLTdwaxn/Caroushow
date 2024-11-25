@@ -1,5 +1,6 @@
 export const SET_IMAGE = 'SET_IMAGE';
 export const SET_RESULTS = 'SET_RESULTS';
+export const CYCLE_ASPECT_RATIO = 'CYCLE_ASPECT_RATIO';
 
 import { ImagePickerAsset } from "expo-image-picker";
 import { ImageResult } from "expo-image-manipulator";
@@ -17,4 +18,9 @@ export const resetImage = () => ({
 export const setResults = (results: ImageResult[] | []) => ({
   type: SET_RESULTS,
   payload: results,
+});
+
+export const cycleAspectRatio = () => ({
+  type: CYCLE_ASPECT_RATIO,
+  payload: null,
 });
