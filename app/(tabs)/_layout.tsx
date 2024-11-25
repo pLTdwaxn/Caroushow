@@ -1,8 +1,12 @@
 import { Tabs } from "expo-router";
 
+import { View } from "react-native";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import CreateScreenHeader from "../../components/create/Header";
+const NoTitle = () => {
+  return <View />;
+};
 
 const TabLayout = () => {
   return (
@@ -11,6 +15,7 @@ const TabLayout = () => {
         name="settings"
         options={{
           title: "Settings",
+          headerTitle: NoTitle,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "cog-sharp" : "cog-outline"}
@@ -24,11 +29,7 @@ const TabLayout = () => {
         name="index"
         options={{
           title: "Create",
-          headerTitle: (props) => <CreateScreenHeader label="Custom Header" />,
-          headerStyle: {
-            backgroundColor: "#eee",
-            height: 150,
-          },
+          headerTitle: NoTitle,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "create-sharp" : "create-outline"}
@@ -42,6 +43,7 @@ const TabLayout = () => {
         name="gallery"
         options={{
           title: "Gallery",
+          headerTitle: NoTitle,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "images-sharp" : "images-outline"}
