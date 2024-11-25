@@ -38,7 +38,7 @@ const cropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
   };
 
   return (
-    <View style={styles.cropGuide}>
+    <View style={styles.cropGuideContainer}>
       <View id="topShade" style={styles.topShade}></View>
       <View style={[gridStyle, styles.cropGrids]}>{renderColumns()}</View>
       <View id="bottomShade" style={styles.bottomShade}></View>
@@ -47,10 +47,10 @@ const cropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
 };
 
 const styles = StyleSheet.create({
-  cropGuide: {
+  cropGuideContainer: {
     position: "absolute",
-    top: 0,
-    flexDirection: "column",
+    height: "100%",
+    justifyContent: "center",
   },
   cropGrids: {
     borderWidth: 0.2,
@@ -61,13 +61,12 @@ const styles = StyleSheet.create({
   topShade: {
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   bottomShade: {
     width: "100%",
     height: "100%",
-    flexGrow: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 
