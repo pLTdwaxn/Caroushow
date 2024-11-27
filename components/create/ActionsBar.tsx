@@ -1,19 +1,19 @@
 import { View, StyleSheet } from "react-native";
 
-import ResetImageButton from "@/components/create/imageResetButton";
-import AspectRatioButton from "./aspectRatioButton";
-import GridLayoutButton from "./gridLayoutButton";
-import QualityButton from "./qualityButton";
-import RunCropperButton from "./runCropperButton";
+import ResetButton from "./ResetButton";
+import AspectRatioButton from "./AspectRatioButton";
+import GridLayoutButton from "./GridLayoutButton";
+import QualityButton from "./QualityButton";
+import ImageSaveButton from "./ImageSaveButton";
 
 const ActionsBar = () => {
   return (
     <View style={styles.actionsBar}>
-      <ResetImageButton />
+      <ResetButton />
       <AspectRatioButton />
       <GridLayoutButton />
       <QualityButton />
-      <RunCropperButton />
+      <ImageSaveButton />
     </View>
   );
 };

@@ -1,16 +1,9 @@
-import { store } from "@/store";
-
-import { setResults } from "@/store/actions";
-
 import { ImagePickerAsset } from "expo-image-picker";
-import {
-  ImageResult,
-  manipulateAsync,
-  SaveFormat,
-} from "expo-image-manipulator";
+import * as ImageManipulator from "expo-image-manipulator";
+
+import { ImageResult } from "expo-image-manipulator";
 
 type CropperOptions = {
-  rows: number;
   columns: number;
   ratio: {
     width: number;
@@ -23,59 +16,77 @@ type CropperOptions = {
 let instance: ImageCropper | null = null;
 
 export default class ImageCropper {
-  image: ImagePickerAsset;
-  options: CropperOptions;
+  image: ImagePickerAsset | null;
+  options: CropperOptions | null;
 
   private constructor() {
-    // this.image = image;
-    // this.options = options;
-    this.image = store.getState().image;
-    this.options = store.getState().cropperParams;
+    this.image = null;
+    this.options = null;
   }
 
-  static getInstance(
-  ): ImageCropper {
+  static getInstance(): ImageCropper {
     if (!instance) {
       instance = new ImageCropper();
     }
     return instance;
   }
 
-  async run() {
-    const croppedImages: ImageResult[] = [];
+  setImage(image: ImagePickerAsset) {
+    this.image = image;
+    return this;
+  }
 
-    const { rows, columns, compress, ratio, resize } = this.options;
-    const { width, height } = this.image;
+  setOptions(options: CropperOptions) {
+    this.options = options;
+    return this;
+  }
+
+  async run() {
+    if (!this.image || !this.options) {
+      throw new Error(
+        "Image and options must be set before running the cropper"
+      );
+    }
+
+    const { columns, compress, ratio, resize } = this.options;
+    const { width, height, uri } = this.image;
 
     const pieceWidth = Math.floor(width / columns); // Round here to avoid rounding during cropping which may cause blank gaps
     const pieceHeight = (pieceWidth / ratio.width) * ratio.height;
 
-    const offsetY = (height - pieceHeight * rows) / 2;
-    const resizeParams = pieceWidth > pieceHeight ? { height: resize } : { width: resize };
+    const offsetY = (height - pieceHeight) / 2;
+    const resizeOptions =
+      pieceWidth > pieceHeight ? { height: resize } : { width: resize };
 
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < columns; col++) {
-        const cropResult = await manipulateAsync(
-          this.image.uri,
-          [
-            {
-              crop: {
-                originX: col * pieceWidth,
-                originY: row * pieceHeight + offsetY,
-                width: pieceWidth,
-                height: pieceHeight,
-              },
-            },
-            {
-              resize: resizeParams,
-            },
-          ],
-          { compress: compress, format: SaveFormat.JPEG }
-        );
-        croppedImages.push(cropResult);
-      }
-    }
+    const croppedImages: ImageResult[] = [];
 
-    store.dispatch(setResults(croppedImages));
+    // Generate an array of originXs for each column
+    const originXs = Array.from({ length: columns }, (_, i) => i * pieceWidth);
+    const cropOptionsMap = originXs.map((originX) => {
+      return {
+        originX: originX,
+        originY: offsetY,
+        width: pieceWidth,
+        height: pieceHeight,
+      };
+    });
+
+    const cropJobs = cropOptionsMap.map(
+      async (cropOptions) =>
+        await ImageManipulator.ImageManipulator.manipulate(uri)
+          .crop(cropOptions)
+          .resize(resizeOptions)
+          .renderAsync()
+          .then(async (ref) => {
+            return await ref.saveAsync({
+              compress: compress,
+              format: ImageManipulator.SaveFormat.JPEG,
+            });
+          })
+    );
+
+    croppedImages.push(...(await Promise.all(cropJobs)));
+
+    return croppedImages;
   }
 }

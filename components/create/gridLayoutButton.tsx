@@ -1,23 +1,36 @@
 import { connect } from "react-redux";
+import { store } from "@/store";
+import { cycleColumns, runCropper } from "@/store/actions";
 
 import Button from "@/components/shared/Button";
 
 type GridLayoutProps = {
-  rows: number;
   columns: number;
 };
 
-const GridLayoutButton = ({ rows, columns }: GridLayoutProps) => {
-  const buttonLabel = rows ? `${rows}:${columns}` : "? x ?";
+const GridLayoutButton = ({ columns }: GridLayoutProps) => {
+  const buttonLabel = `x${columns}`;
 
-  return <Button label={buttonLabel} disabled={true}></Button>;
+  return (
+    <Button
+      label={buttonLabel}
+      onPress={() => {
+        store.dispatch(cycleColumns());
+        store.dispatch(runCropper());
+      }}
+    ></Button>
+  );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    rows: state.cropperParams.rows,
     columns: state.cropperParams.columns,
   };
 };
 
-export default connect(mapStateToProps)(GridLayoutButton);
+const mapDispatchToProps = {
+  cycleColumns,
+  runCropper,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GridLayoutButton);

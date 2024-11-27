@@ -1,34 +1,39 @@
 import { connect } from "react-redux";
-
 import { store } from "@/store";
-import { resetImage } from "@/store/actions";
+import { reset } from "@/store/actions";
+
+import { ImagePickerAsset } from "expo-image-picker";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Button from "@/components/shared/Button";
 
 type Props = {
-  uri: string;
+  image: {
+    data: ImagePickerAsset;
+    isLoading: boolean;
+    error: any;
+  };
 };
 
-const ImageResetButton = ({ uri }: Props) => {
+const ResetButton = ({ image }: Props) => {
   return (
     <Button
       label={<Ionicons name="refresh-outline" size={24} />}
-      disabled={!uri}
+      disabled={!image.data}
       onPress={() => {
-        store.dispatch(resetImage());
+        store.dispatch(reset());
       }}
     />
   );
 };
 
 const mapStateToProps = (state: any) => ({
-  uri: state.image?.uri,
+  image: state.image,
 });
 
 const mapDispatchToProps = {
-  resetImage,
+  reset,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageResetButton);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetButton);
