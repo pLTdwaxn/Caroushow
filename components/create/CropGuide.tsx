@@ -11,7 +11,7 @@ type CropGuideProps = {
   };
 };
 
-const cropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
+const CropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
   const width = Dimensions.get("window").width;
   const height = (width / ratio.width / columns) * ratio.height;
 
@@ -76,4 +76,4 @@ const mapStateToProps = (state: any) => ({
   ratio: state.cropperParams.ratio,
 });
 
-export default connect(mapStateToProps)(cropGuide);
+export default connect(mapStateToProps)(CropGuide);
