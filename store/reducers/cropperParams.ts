@@ -8,9 +8,12 @@ const aspectRatios = [
 ];
 // Ranked from most square to most rectangular
 
+const columns = [
+  2, 3, 4, 5
+]
+
 const initialState = {
-  rows: 1,
-  columns: 3,
+  columns: columns[1],
   ratio: aspectRatios[0],
   resize: 1080,
   compress: 1,
@@ -20,10 +23,14 @@ export const cropperParamsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'SET_CROP':
       return { ...state, ...action.payload };
-    case 'CYCLE_ASPECT_RATIO':
+    case 'CYCLE_ASPECT_RATIOS':
       const currentIndex = aspectRatios.indexOf(state.ratio);
       const nextIndex = (currentIndex + 1) % aspectRatios.length;
       return { ...state, ratio: aspectRatios[nextIndex] };
+    case 'CYCLE_COLUMNS':
+      const currentColumnIndex = columns.indexOf(state.columns);
+      const nextColumnIndex = (currentColumnIndex + 1) % columns.length;
+      return { ...state, columns: columns[nextColumnIndex] };
     default:
       return state;
   }

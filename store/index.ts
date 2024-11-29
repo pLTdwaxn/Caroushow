@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { applyMiddleware, combineReducers } from "redux";
+import { thunk } from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 
-import { cropperParamsReducer } from './reducers/cropperParams';
-import { imageReducer } from './reducers/image';
-import { resultsReducer } from './reducers/results';
+import { cropperParamsReducer } from "./reducers/cropperParams";
+import { imageReducer } from "./reducers/image";
+import { resultsReducer } from "./reducers/results";
 
 const rootReducer = combineReducers({
   cropperParams: cropperParamsReducer,
@@ -13,4 +14,5 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(thunk),
 });

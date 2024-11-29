@@ -1,38 +1,52 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, View } from "react-native";
+
+import { StyleSheet, View, Text } from "react-native";
+
 import { Image } from "expo-image";
+import { ImagePickerAsset } from "expo-image-picker";
 
 import CropGuide from "@/components/create/CropGuide";
 import ImageSelectButton from "@/components/create/ImageSelectButton";
 import ActionsBar from "@/components/create/ActionsBar";
 
 type Props = {
-  uri: string | undefined;
+  image: {
+    data: ImagePickerAsset;
+    isLoading: boolean;
+    error: any;
+  };
 };
 
-const ImageViewer = ({ uri }: Props) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+const ImageViewer = ({ image }: Props) => {
+  const [imageRendered, setImageRendered] = useState(false);
 
-  return uri ? (
-    <View>
-      <Image
-        source={{ uri: uri }}
-        style={styles.imageStyle}
-        contentFit="contain"
-        onLoad={() => setImageLoaded(true)}
-      />
-      {imageLoaded && <CropGuide />}
-      <View style={styles.actionsBarContainer}>
-        <ActionsBar />
+  const loadingSplash = <Text style={styles.text}>Loading...</Text>;
+
+  return (
+    (image.isLoading && loadingSplash) ||
+    (image.data && (
+      <View>
+        <Image
+          source={{ uri: image.data.uri }}
+          style={styles.imageStyle}
+          contentFit="contain"
+          onLoad={() => setImageRendered(true)}
+        />
+        {imageRendered && <CropGuide />}
+        <View style={styles.actionsBarContainer}>
+          <ActionsBar />
+        </View>
       </View>
-    </View>
-  ) : (
-    <ImageSelectButton />
+    )) || <ImageSelectButton />
   );
 };
 
 const styles = StyleSheet.create({
+  text: {
+    color: "white",
+    textAlign: "center",
+  },
   imageStyle: {
     width: "100%",
     height: "100%",
@@ -50,7 +64,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: any) => ({
-  uri: state.image?.uri,
+  image: state.image,
 });
 
 export default connect(mapStateToProps)(ImageViewer);

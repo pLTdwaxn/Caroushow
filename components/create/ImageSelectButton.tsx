@@ -1,13 +1,10 @@
 import { connect } from "react-redux";
-
 import { store } from "@/store";
 import { setImage } from "@/store/actions";
 
 import * as ImagePicker from "expo-image-picker";
 
 import Button from "@/components/shared/Button";
-
-import ImageCropper from "@/core/ImageCropper";
 
 const ImageSelectButton = () => {
   const pickImageAsync = async () => {
@@ -23,7 +20,6 @@ const ImageSelectButton = () => {
       };
 
       store.dispatch(setImage(image));
-      ImageCropper.getInstance().run();
     }
   };
 
