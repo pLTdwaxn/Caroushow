@@ -53,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump npm packages [#95](https://github.com/pLTdwaxn/Caroushow/issues/95)
 - Revert zoomed in view [#99](https://github.com/pLTdwaxn/Caroushow/issues/99)
 - Bump Expo version [#102](https://github.com/pLTdwaxn/Caroushow/issues/102)
+- Disabled runCropper on parameters change [#100](https://github.com/pLTdwaxn/Caroushow/issues/100)
 
 ### Removed
 
