@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { store } from "@/store";
-import { cycleAspectRatios, runCropper } from "@/store/actions";
+import { cycleAspectRatios } from "@/store/actions";
 
 import Button from "@/components/shared/Button";
 
@@ -16,7 +16,6 @@ const AspectRatioButton = ({ ratio }: AspectRatioProps) => {
       label={buttonLabel}
       onPress={() => {
         store.dispatch(cycleAspectRatios());
-        store.dispatch(runCropper());
       }}
     ></Button>
   );
@@ -30,7 +29,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = {
   cycleAspectRatios,
-  runCropper,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AspectRatioButton);
