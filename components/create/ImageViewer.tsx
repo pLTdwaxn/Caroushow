@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import {
-  StyleSheet,
-  Dimensions,
-  FlatList,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Dimensions, Text, View } from "react-native";
 
 import { Image } from "expo-image";
 import { ImagePickerAsset } from "expo-image-picker";
@@ -35,7 +28,6 @@ type Props = {
 
 const ImageViewer = ({ image, cropperParams }: Props) => {
   const [imageRendered, setImageRendered] = useState(false);
-  const [zoomed, setZoomed] = useState(true);
 
   const loadingSplash = <Text style={styles.text}>Loading...</Text>;
 
@@ -46,10 +38,6 @@ const ImageViewer = ({ image, cropperParams }: Props) => {
     flexGrow: 0,
     width: viewerWidth,
     height: viewerHeight,
-  };
-
-  const changeView = () => {
-    setZoomed(!zoomed);
   };
 
   const renderItem = ({
@@ -67,31 +55,18 @@ const ImageViewer = ({ image, cropperParams }: Props) => {
   return (
     (image.isLoading && loadingSplash) ||
     (image.data && (
-      <TouchableOpacity onPress={changeView}>
-        {(zoomed && (
-          <FlatList
-            horizontal
-            data={[image.data]}
-            renderItem={renderItem}
-            keyExtractor={(_, index) => index.toString()}
-            contentContainerStyle={viewerStyle}
-            pagingEnabled
-          />
-        )) || (
-          <View>
-            <Image
-              source={{ uri: image.data.uri }}
-              style={styles.imageStyle}
-              contentFit="contain"
-              onLoad={() => setImageRendered(true)}
-            />
-            {imageRendered && <CropGuide />}
-            <View style={styles.actionsBarContainer}>
-              <ActionsBar />
-            </View>
-          </View>
-        )}
-      </TouchableOpacity>
+      <View>
+        <Image
+          source={{ uri: image.data.uri }}
+          style={styles.imageStyle}
+          contentFit="contain"
+          onLoad={() => setImageRendered(true)}
+        />
+        {imageRendered && <CropGuide />}
+        <View style={styles.actionsBarContainer}>
+          <ActionsBar />
+        </View>
+      </View>
     )) || <ImageSelectButton />
   );
 };

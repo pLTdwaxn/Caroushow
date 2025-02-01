@@ -51,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reworked ImageViewer centering logic [#85](https://github.com/pLTdwaxn/Caroushow/issues/85)
 - Fix lowercase components filenames [#91](https://github.com/pLTdwaxn/Caroushow/issues/91)
 - Bump npm packages [#95](https://github.com/pLTdwaxn/Caroushow/issues/95)
+- Revert zoomed in view [#99](https://github.com/pLTdwaxn/Caroushow/issues/99)
 
 ### Removed
 
