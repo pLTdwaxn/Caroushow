@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to cycle through Aspect Ratios [#87](https://github.com/pLTdwaxn/Caroushow/issues/87)
 - Complex Redux action logic [#89](https://github.com/pLTdwaxn/Caroushow/issues/89)
 - Tap on ImageViewer to switch to a zoomed in view [#93](https://github.com/pLTdwaxn/Caroushow/issues/93)
+- Add gestures to the ImageViewer [#107](https://github.com/pLTdwaxn/Caroushow/issues/107)
 
 ### Changed
 

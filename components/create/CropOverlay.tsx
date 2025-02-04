@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { View, StyleSheet, Dimensions } from "react-native";
 
-type CropGuideProps = {
+type CropOverlayProps = {
   rows: number;
   columns: number;
   ratio: {
@@ -11,7 +11,7 @@ type CropGuideProps = {
   };
 };
 
-const CropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
+const CropOverlay = ({ rows, columns, ratio }: CropOverlayProps) => {
   const width = Dimensions.get("window").width;
   const height = (width / ratio.width / columns) * ratio.height;
 
@@ -38,7 +38,7 @@ const CropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
   };
 
   return (
-    <View style={styles.cropGuideContainer} pointerEvents="none">
+    <View style={styles.cropOverlayContainer} pointerEvents="none">
       <View id="topShade" style={styles.topShade}></View>
       <View style={[gridStyle, styles.cropGrids]}>{renderColumns()}</View>
       <View id="bottomShade" style={styles.bottomShade}></View>
@@ -47,7 +47,7 @@ const CropGuide = ({ rows, columns, ratio }: CropGuideProps) => {
 };
 
 const styles = StyleSheet.create({
-  cropGuideContainer: {
+  cropOverlayContainer: {
     position: "absolute",
     height: "100%",
     justifyContent: "center",
@@ -76,4 +76,4 @@ const mapStateToProps = (state: any) => ({
   ratio: state.cropperParams.ratio,
 });
 
-export default connect(mapStateToProps)(CropGuide);
+export default connect(mapStateToProps)(CropOverlay);
