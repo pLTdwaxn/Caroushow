@@ -1,4 +1,4 @@
-import { View, Dimensions, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { connect } from "react-redux";
@@ -7,11 +7,11 @@ import ImageViewer from "@/components/create/ImageViewer";
 
 const Index = () => {
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer />
       </View>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 

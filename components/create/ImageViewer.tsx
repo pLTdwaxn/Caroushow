@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { StyleSheet, Dimensions, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 
-import { Image } from "expo-image";
 import { ImagePickerAsset } from "expo-image-picker";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
-import CropGuide from "@/components/create/CropGuide";
+import CropOverlay from "@/components/create/CropOverlay";
 import ImageSelectButton from "@/components/create/ImageSelectButton";
 import ActionsBar from "@/components/create/ActionsBar";
 
@@ -28,46 +33,87 @@ type Props = {
 
 const ImageViewer = ({ image, cropperParams }: Props) => {
   const [imageRendered, setImageRendered] = useState(false);
+  const scale = useSharedValue(1);
+  const baseScale = useSharedValue(1);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const baseTranslateX = useSharedValue(0);
+  const baseTranslateY = useSharedValue(0);
+  const screenWidth = Dimensions.get("window").width;
+  const imageWidth = image.data ? image.data.width : 0;
+  const imageHeight = image.data ? image.data.height : 0;
 
   const loadingSplash = <Text style={styles.text}>Loading...</Text>;
 
-  const viewerWidth = Dimensions.get("window").width * cropperParams.columns;
-  const viewerHeight = Dimensions.get("window").height;
+  const pinch = Gesture.Pinch()
+    .onStart(() => {
+      baseScale.value = scale.value;
+    })
+    .onUpdate((event) => {
+      scale.value = baseScale.value * event.scale;
+    })
+    .onEnd(() => {
+      const maxScale = Math.min(
+        imageWidth / screenWidth,
+        imageHeight /
+          ((screenWidth / cropperParams.ratio.width) *
+            cropperParams.ratio.height)
+      );
+      if (scale.value * screenWidth < screenWidth) {
+        scale.value = withTiming(1, { duration: 200 });
+      }
+      if (scale.value > maxScale) {
+        scale.value = withTiming(maxScale, { duration: 200 });
+      }
+    });
 
-  const viewerStyle = {
-    flexGrow: 0,
-    width: viewerWidth,
-    height: viewerHeight,
-  };
+  const pan = Gesture.Pan()
+    .onStart(() => {
+      baseTranslateX.value = translateX.value;
+      baseTranslateY.value = translateY.value;
+    })
+    .onUpdate((event) => {
+      translateX.value =
+        baseTranslateX.value + event.translationX / scale.value;
+      translateY.value =
+        baseTranslateY.value + event.translationY / scale.value;
+    })
+    .onEnd(() => {
+      console.log(`x: ${translateX.value}, y: ${translateY.value}`);
+    });
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: ImagePickerAsset;
-    index: number;
-  }) => {
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scale: scale.value },
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+      ],
+    };
+  });
+
+  const ImagePreview = () => {
     return (
-      <Image key={index.toString()} source={item} style={styles.imageStyle} />
+      <View>
+        <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}>
+          <>
+            <Animated.Image
+              source={{ uri: image.data.uri }}
+              style={[styles.imageStyle, animatedStyle]}
+              resizeMode="contain"
+              onLoad={() => setImageRendered(true)}
+            />
+            {imageRendered && <CropOverlay />}
+          </>
+        </GestureDetector>
+        <ActionsBar />
+      </View>
     );
   };
 
   return (
     (image.isLoading && loadingSplash) ||
-    (image.data && (
-      <View>
-        <Image
-          source={{ uri: image.data.uri }}
-          style={styles.imageStyle}
-          contentFit="contain"
-          onLoad={() => setImageRendered(true)}
-        />
-        {imageRendered && <CropGuide />}
-        <View style={styles.actionsBarContainer}>
-          <ActionsBar />
-        </View>
-      </View>
-    )) || <ImageSelectButton />
+    (image.data && <ImagePreview />) || <ImageSelectButton />
   );
 };
 
@@ -80,15 +126,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  cropGuideContainer: {
+  label: {
     position: "absolute",
-    height: "100%",
-    justifyContent: "center",
-  },
-  actionsBarContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
+    top: 10,
+    left: 10,
+    color: "white",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    padding: 5,
+    borderRadius: 5,
   },
 });
 

@@ -8,12 +8,14 @@ import ImageSaveButton from "./ImageSaveButton";
 
 const ActionsBar = () => {
   return (
-    <View style={styles.actionsBar}>
-      <ResetButton />
-      <AspectRatioButton />
-      <GridLayoutButton />
-      <QualityButton />
-      <ImageSaveButton />
+    <View style={styles.actionsBarContainer}>
+      <View style={styles.actionsBar}>
+        <ResetButton />
+        <AspectRatioButton />
+        <GridLayoutButton />
+        <QualityButton />
+        <ImageSaveButton />
+      </View>
     </View>
   );
 };
@@ -23,6 +25,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     margin: 12,
+  },
+  actionsBarContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 });
 
