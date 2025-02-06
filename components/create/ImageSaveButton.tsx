@@ -13,7 +13,13 @@ type Props = {
   results: { data: ImageResult[]; isLoading: boolean; error: any };
 };
 
-const ImageSaveButton = ({ results }: Props) => {
+import { FC } from "react";
+
+interface ImageSaveButtonProps {
+  results: { data: ImageResult[]; isLoading: boolean; error: any };
+}
+
+const ImageSaveButton: FC<ImageSaveButtonProps> = ({ results }) => {
   const [status, requestPermission] = MediaLibrary.usePermissions();
 
   if (status === null) {
