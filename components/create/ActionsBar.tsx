@@ -6,7 +6,9 @@ import GridLayoutButton from "./GridLayoutButton";
 import QualityButton from "./QualityButton";
 import ImageSaveButton from "./ImageSaveButton";
 
-const ActionsBar = () => {
+interface ActionsBarProps {}
+
+const ActionsBar: React.FC<ActionsBarProps> = () => {
   return (
     <View style={styles.actionsBarContainer}>
       <View style={styles.actionsBar}>
@@ -27,8 +29,6 @@ const styles = StyleSheet.create({
     margin: 12,
   },
   actionsBarContainer: {
-    position: "absolute",
-    bottom: 0,
     width: "100%",
   },
 });
