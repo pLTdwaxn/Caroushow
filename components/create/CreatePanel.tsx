@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { ImagePickerAsset } from "expo-image-picker";
 
 import ImageSelectButton from "@/components/create/ImageSelectButton";
@@ -24,7 +24,7 @@ type Props = {
   };
 };
 
-const ImageViewer = ({ image, cropperParams }: Props) => {
+const CreatePanel = ({ image, cropperParams }: Props) => {
   const CreatePreview = () => (
     <View style={{ justifyContent: "space-between", flex: 1 }}>
       <ImagePreview image={image} cropperParams={cropperParams} />
@@ -36,26 +36,9 @@ const ImageViewer = ({ image, cropperParams }: Props) => {
   return (image.data && <CreatePreview />) || <ImageSelectButton />;
 };
 
-const styles = StyleSheet.create({
-  text: {
-    color: "white",
-    textAlign: "center",
-  },
-
-  label: {
-    position: "absolute",
-    top: 10,
-    left: 10,
-    color: "white",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    padding: 5,
-    borderRadius: 5,
-  },
-});
-
 const mapStateToProps = (state: any) => ({
   image: state.image,
   cropperParams: state.cropperParams,
 });
 
-export default connect(mapStateToProps)(ImageViewer);
+export default connect(mapStateToProps)(CreatePanel);

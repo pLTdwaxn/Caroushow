@@ -3,13 +3,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { connect } from "react-redux";
 
-import ImageViewer from "@/components/create/ImageViewer";
+import CreatePanel from "@/components/create/CreatePanel";
 
 const Index = () => {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer />
+        <CreatePanel />
       </View>
     </GestureHandlerRootView>
   );

@@ -1,8 +1,6 @@
 import { ImagePickerAsset } from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 
-import { ImageResult } from "expo-image-manipulator";
-
 type CropperOptions = {
   columns: number;
   ratio: {
@@ -58,7 +56,7 @@ export default class ImageCropper {
     const resizeOptions =
       pieceWidth > pieceHeight ? { height: resize } : { width: resize };
 
-    const croppedImages: ImageResult[] = [];
+    const croppedImages: ImageManipulator.ImageResult[] = [];
 
     // Generate an array of originXs for each column
     const originXs = Array.from({ length: columns }, (_, i) => i * pieceWidth);

@@ -6,9 +6,7 @@ import GridLayoutButton from "./GridLayoutButton";
 import QualityButton from "./QualityButton";
 import ImageSaveButton from "./ImageSaveButton";
 
-interface ActionsBarProps {}
-
-const ActionsBar: React.FC<ActionsBarProps> = () => {
+const ActionsBar = () => {
   return (
     <View style={styles.actionsBarContainer}>
       <View style={styles.actionsBar}>
@@ -30,6 +28,7 @@ const styles = StyleSheet.create({
   },
   actionsBarContainer: {
     width: "100%",
+    backgroundColor: "white",
   },
 });
 
