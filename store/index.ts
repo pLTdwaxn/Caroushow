@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers } from "redux";
+import { combineReducers } from "redux";
 import { thunk } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 

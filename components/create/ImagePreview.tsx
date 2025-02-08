@@ -29,8 +29,8 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
   const [imageRendered, setImageRendered] = useState(false);
 
   const screenWidth = Dimensions.get("window").width;
-  const imageWidth = image.data ? image.data.width : 0;
-  const imageHeight = image.data ? image.data.height : 0;
+  const imageWidth = image.data.width;
+  const imageHeight = image.data.height;
 
   const { pinch, scale } = usePinchGesture(
     imageWidth,
@@ -47,6 +47,11 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
     ],
   }));
 
+  const imageWrapperStyle = {
+    width: screenWidth,
+    height: screenWidth * (imageHeight / imageWidth),
+  };
+
   return (
     <View
       style={[
@@ -58,15 +63,7 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
       ]}
     >
       <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}>
-        <View
-          style={[
-            styles.imageWrapper,
-            {
-              width: screenWidth,
-              height: screenWidth * (imageHeight / imageWidth),
-            },
-          ]}
-        >
+        <View style={imageWrapperStyle}>
           <Animated.Image
             source={{ uri: image.data.uri }}
             style={[styles.imageStyle, animatedStyle]}
@@ -95,7 +92,7 @@ const calculatedDimensions = ({
   const screenWidth = Dimensions.get("screen").width;
   const calculatedWidth = screenWidth;
   const calculatedHeight =
-    (screenWidth / columns) * (ratio.height / ratio.width);
+    (screenWidth / columns) * (ratio.height / ratio.width) + 50;
   return { width: calculatedWidth, height: calculatedHeight };
 };
 
@@ -104,10 +101,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-  },
-  imageWrapper: {
-    // width: "100%",
-    // height: "100%",
   },
   imageStyle: {
     position: "absolute",
