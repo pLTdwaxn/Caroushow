@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { connect } from "react-redux";
 
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -111,4 +112,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImagePreview;
+const mapStateToProps = (state: any) => {
+  return {
+    translation: state.translation,
+    scale: state.scale,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImagePreview);

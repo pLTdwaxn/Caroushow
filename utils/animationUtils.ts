@@ -7,7 +7,7 @@ export const usePinchGesture = (
   imageHeight: number,
   cropperParams: any
 ) => {
-  const screenWidth = Dimensions.get("window").width;
+  // const screenWidth = Dimensions.get("window").width;
   const scale = useSharedValue(1);
   const savedScale = useSharedValue(1);
   // const maxScale = Math.min(

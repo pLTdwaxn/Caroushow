@@ -1,7 +1,8 @@
-import ImagePicker, { ImagePickerAsset } from "expo-image-picker";
+import { ImagePickerAsset } from "expo-image-picker";
 import { ImageResult } from "expo-image-manipulator";
 
 import ImageCropper from "@/core/ImageCropper";
+import { Processes } from "@/types";
 
 // Action types
 export const RESET_IMAGE = "RESET_IMAGE";
@@ -93,8 +94,6 @@ export const setImage = (image: ImagePickerAsset) => {
     } catch (error) {
       console.log(error);
       dispatch(fetchImageFailure());
-    } finally {
-      dispatch(runCropper());
     }
   };
 };
