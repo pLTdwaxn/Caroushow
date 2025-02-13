@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -62,7 +62,8 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
         }),
       ]}
     >
-      <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}>
+      {/* <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}> */}
+      <GestureDetector gesture={Gesture.Tap()}>
         <View style={imageWrapperStyle}>
           <Animated.Image
             source={{ uri: image.data.uri }}
