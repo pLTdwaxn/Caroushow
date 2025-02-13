@@ -63,7 +63,8 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
         }),
       ]}
     >
-      <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}>
+      {/* <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}> */}
+      <GestureDetector gesture={Gesture.Tap()}>
         <View style={imageWrapperStyle}>
           <Animated.Image
             source={{ uri: image.data.uri }}
