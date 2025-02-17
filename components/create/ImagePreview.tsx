@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -9,6 +9,7 @@ import { ImagePickerAsset } from "expo-image-picker";
 import CropOverlay from "@/components/create/CropOverlay";
 
 import { usePinchGesture, usePanGesture } from "@/utils/animationUtils";
+// import { Processes } from "@/types";
 
 type ImagePreviewProps = {
   image: {
@@ -16,28 +17,16 @@ type ImagePreviewProps = {
     isLoading: boolean;
     error: any;
   };
-  cropperParams: {
-    ratio: {
-      width: number;
-      height: number;
-    };
-    rows: number;
-    columns: number;
-  };
 };
 
-const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
+const ImagePreview = ({ image }: ImagePreviewProps) => {
   const [imageRendered, setImageRendered] = useState(false);
 
   const screenWidth = Dimensions.get("window").width;
   const imageWidth = image.data.width;
   const imageHeight = image.data.height;
 
-  const { pinch, scale } = usePinchGesture(
-    imageWidth,
-    imageHeight,
-    cropperParams
-  );
+  const { pinch, scale } = usePinchGesture(imageWidth, imageHeight);
   const { pan, translateX, translateY } = usePanGesture(scale);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -53,18 +42,19 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
     height: screenWidth * (imageHeight / imageWidth),
   };
 
+  const calculatedDimensions = () => {
+    const screenWidth = Dimensions.get("screen").width;
+    const calculatedWidth = screenWidth;
+    const columns = useSelector((state: any) => state.cropperParams.columns);
+    const ratio = useSelector((state: any) => state.cropperParams.ratio);
+    const calculatedHeight =
+      (screenWidth / columns) * (ratio.height / ratio.width) + 50;
+    return { width: calculatedWidth, height: calculatedHeight };
+  };
+
   return (
-    <View
-      style={[
-        styles.imageContainer,
-        calculatedDimensions({
-          columns: cropperParams.columns,
-          ratio: cropperParams.ratio,
-        }),
-      ]}
-    >
-      {/* <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}> */}
-      <GestureDetector gesture={Gesture.Tap()}>
+    <View style={[styles.imageContainer, calculatedDimensions()]}>
+      <GestureDetector gesture={Gesture.Simultaneous(pinch, pan)}>
         <View style={imageWrapperStyle}>
           <Animated.Image
             source={{ uri: image.data.uri }}
@@ -77,25 +67,6 @@ const ImagePreview = ({ image, cropperParams }: ImagePreviewProps) => {
       </GestureDetector>
     </View>
   );
-};
-
-type calculatedDimensionsProps = {
-  columns: number;
-  ratio: {
-    width: number;
-    height: number;
-  };
-};
-
-const calculatedDimensions = ({
-  columns,
-  ratio,
-}: calculatedDimensionsProps) => {
-  const screenWidth = Dimensions.get("screen").width;
-  const calculatedWidth = screenWidth;
-  const calculatedHeight =
-    (screenWidth / columns) * (ratio.height / ratio.width) + 50;
-  return { width: calculatedWidth, height: calculatedHeight };
 };
 
 const styles = StyleSheet.create({

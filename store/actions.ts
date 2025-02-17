@@ -39,6 +39,16 @@ export const resetResults = () => ({
   payload: null,
 });
 
+export const updateTranslation = (translation: { x: number; y: number }) => ({
+  type: "UPDATE_TRANSLATION",
+  payload: translation,
+});
+
+export const updateScale = (scale: number) => ({
+  type: "UPDATE_SCALE",
+  payload: scale,
+});
+
 export const cycleAspectRatios = () => ({
   type: CYCLE_ASPECT_RATIOS,
   payload: null,
