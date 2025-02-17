@@ -34,6 +34,8 @@ export const cropperParamsReducer = (state = initialState, action: any) => {
       const currentColumnIndex = columns.indexOf(state.columns);
       const nextColumnIndex = (currentColumnIndex + 1) % columns.length;
       return { ...state, columns: columns[nextColumnIndex] };
+    case "UPDATE_TRANSLATION":
+      return { ...state, translation: action.payload };
     default:
       return state;
   }

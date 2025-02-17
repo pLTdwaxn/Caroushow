@@ -14,20 +14,12 @@ type Props = {
     isLoading: boolean;
     error: any;
   };
-  cropperParams: {
-    ratio: {
-      width: number;
-      height: number;
-    };
-    rows: number;
-    columns: number;
-  };
 };
 
-const CreatePanel = ({ image, cropperParams }: Props) => {
+const CreatePanel = ({ image }: Props) => {
   const CreatePreview = () => (
     <View style={{ justifyContent: "space-between", flex: 1 }}>
-      <ImagePreview image={image} cropperParams={cropperParams} />
+      <ImagePreview image={image} />
       <ControlPanel />
       <ActionsBar />
     </View>
@@ -38,7 +30,6 @@ const CreatePanel = ({ image, cropperParams }: Props) => {
 
 const mapStateToProps = (state: any) => ({
   image: state.image,
-  cropperParams: state.cropperParams,
 });
 
 export default connect(mapStateToProps)(CreatePanel);

@@ -1,15 +1,13 @@
+import { store } from "@/store";
+import { updateTranslation, updateScale } from "@/store/actions";
 import { Dimensions } from "react-native";
 import { Gesture } from "react-native-gesture-handler";
 import { useSharedValue, withTiming, Easing } from "react-native-reanimated";
 
-export const usePinchGesture = (
-  imageWidth: number,
-  imageHeight: number,
-  cropperParams: any
-) => {
+export const usePinchGesture = (imageWidth: number, imageHeight: number) => {
   // const screenWidth = Dimensions.get("window").width;
   const scale = useSharedValue(1);
-  const savedScale = useSharedValue(1);
+  const baseScale = useSharedValue(1);
   // const maxScale = Math.min(
   //   imageWidth / screenWidth,
   //   imageHeight /
@@ -20,25 +18,23 @@ export const usePinchGesture = (
   const pinch = Gesture.Pinch()
     .onStart(() => {})
     .onUpdate((event) => {
-      scale.value = parseFloat((savedScale.value * event.scale).toFixed(2));
+      scale.set(parseFloat((baseScale.get() * event.scale).toFixed(2)));
     })
     .onEnd(() => {
-      if (scale.value < 1) {
-        savedScale.value = 1;
-        scale.value = withTiming(1, {
-          duration: 200,
-          easing: Easing.linear,
-        });
-      } else if (scale.value > maxScale) {
-        savedScale.value = maxScale;
-        scale.value = withTiming(maxScale, {
-          duration: 200,
-          easing: Easing.linear,
-        });
+      if (scale.get() < 1) {
+        baseScale.set(1);
+        scale.set(1);
+        store.dispatch(updateScale(1));
+      } else if (scale.get() > maxScale) {
+        baseScale.set(maxScale);
+        scale.set(maxScale);
+        store.dispatch(updateScale(maxScale));
       } else {
-        savedScale.value = scale.value;
+        baseScale.set(scale.get());
+        store.dispatch(updateScale(scale.get()));
       }
-    });
+    })
+    .runOnJS(true);
 
   return { pinch, scale };
 };
@@ -53,21 +49,24 @@ export const usePanGesture = (scale: any) => {
     .onStart(() => {})
     .onUpdate((event) => {
       const newTranslateX = Math.floor(
-        baseTranslateX.value + event.translationX / scale.value
+        baseTranslateX.get() + event.translationX / scale.get()
       );
       const newTranslateY = Math.floor(
-        baseTranslateY.value + event.translationY / scale.value
+        baseTranslateY.get() + event.translationY / scale.get()
       );
 
-      translateX.value = newTranslateX;
-      translateY.value = newTranslateY;
+      translateX.set(newTranslateX);
+      translateY.set(newTranslateY);
     })
     .onEnd(() => {
-      baseTranslateX.value = translateX.value;
-      baseTranslateY.value = translateY.value;
-      console.log("baseTranslateX", baseTranslateX.value);
-      console.log("baseTranslateY", baseTranslateY.value);
-    });
+      baseTranslateX.set(translateX.get());
+      baseTranslateY.set(translateY.get());
+
+      store.dispatch(
+        updateTranslation({ x: translateX.get(), y: translateY.get() })
+      );
+    })
+    .runOnJS(true);
 
   return { pan, translateX, translateY };
 };

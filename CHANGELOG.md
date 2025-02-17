@@ -57,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Disabled runCropper on parameters change [#100](https://github.com/pLTdwaxn/Caroushow/issues/100)
 - Move ImagePreview to top of the screen [#109](https://github.com/pLTdwaxn/Caroushow/issues/109)
 - Move animation related methods into a util file
+- Update scale and translation with gestures [#118](https://github.com/pLTdwaxn/Caroushow/issues/118)
 
 ### Removed
 
