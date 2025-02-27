@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CaroushowNeo",
-    "slug": "CaroushowNeo",
+    "name": "Caroushow",
+    "slug": "Caroushow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
