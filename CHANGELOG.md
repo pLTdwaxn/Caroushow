@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A component to show the selected image
 - The Create Tab for making sliced images (slicing not implemented)
 - A FlatList image viewer that snap to 1/3 of the image width
+- Basic test cases for components
+- The Slicing logic
 
 ### Changed
 
