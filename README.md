@@ -1,8 +1,18 @@
-# Welcome to your Expo app 👋
+# Caroushow
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Caroushow is an app that allows you to create seamless carousel posts for your social media.
+
+<img src="docs/media/app.jpg" alt="The App showing how the selected image will be cropped" width="200"/><img src="docs/media/instagram_post_med.gif" alt="The three cropped images scroll like one on Instagram" width="200"/>
+
+## Description
+
+Have you ever had a photo that looks great whether zoomed in or out, but the cropping and resizing on social media stops the audience from appreciating its fine details?
+
+Caroushow helps create contiguous image crops so they still look like one photo when swiped on and looked at up close!
 
 ## Get started
+
+There is not an official release yet. You can build the development version with npm and run it with Expo Go.
 
 1. Install dependencies
 
@@ -22,29 +32,3 @@ In the output, you'll find options to open the app in a
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
