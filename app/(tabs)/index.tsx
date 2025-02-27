@@ -4,7 +4,7 @@ import ImageSlider from "@/components/createTab/ImageSlider";
 import { connect } from "react-redux";
 import ImageSelectButton from "@/components/createTab/ImageSelectButton";
 import SocialMediaSelectButton from "@/components/createTab/SocialMediaSelectButton";
-import ActionsBar from "@/components/createTab/ActionsBar";
+import ActionsBar from "./createTab/ActionsBar";
 
 type CreateTabProps = {
   image: ImageState;
