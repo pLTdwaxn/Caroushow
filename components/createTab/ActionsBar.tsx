@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 const ActionsBar = () => {
   return (
-    <View style={styles.actionsBar}>
+    <View style={styles.actionsBar} testID="actions-bar">
       <Text>Actions</Text>
     </View>
   );

@@ -19,14 +19,16 @@ const ImageSlider = ({ image }: ImageSliderProps) => {
 
   return (
     <View style={styles.imageSlider}>
-      <FlatList
-        horizontal
-        data={image.asset ? [image.asset] : []}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.uri}
-        snapToInterval={screenWidth}
-        decelerationRate="fast"
-      />
+      {image.asset && (
+        <FlatList
+          horizontal
+          data={[image.asset]}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.uri}
+          snapToInterval={screenWidth}
+          decelerationRate="fast"
+        />
+      )}
     </View>
   );
 };
