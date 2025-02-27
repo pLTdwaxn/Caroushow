@@ -3,7 +3,10 @@ import { View, Text, StyleSheet } from "react-native";
 
 const SocialMediaSelectButton = () => {
   return (
-    <View style={styles.socialMediaSelector}>
+    <View
+      style={styles.socialMediaSelector}
+      testID="social-media-select-button"
+    >
       <Text>Select Social Media</Text>
     </View>
   );
