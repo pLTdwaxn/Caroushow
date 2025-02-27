@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A FlatList image viewer that snap to 1/3 of the image width
 - Basic test cases for components
 - The Slicing logic
+- A button to reset the image selected
 
 ### Changed
 

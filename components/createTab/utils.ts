@@ -1,8 +1,9 @@
-import * as ImagePicker from "expo-image-picker";
+import ImagePicker from "expo-image-picker";
+import MediaLibrary from "expo-media-library";
 import { ImageManipulator, SaveFormat } from "expo-image-manipulator";
-import * as MediaLibrary from "expo-media-library";
+
 import store from "@/store";
-import { setImage } from "../../store/slices/imageSlice";
+import { setImage } from "@/store/slices/imageSlice";
 
 export const pickImageAsync = async () => {
   try {

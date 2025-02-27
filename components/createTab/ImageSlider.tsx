@@ -24,7 +24,6 @@ const ImageSlider = ({ image }: ImageSliderProps) => {
           horizontal
           data={[image.asset]}
           renderItem={renderItem}
-          keyExtractor={(item) => item.uri}
           snapToInterval={screenWidth}
           decelerationRate="fast"
         />
