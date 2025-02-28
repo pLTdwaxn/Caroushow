@@ -28,7 +28,9 @@ const ActionsBar = () => {
 
 const styles = StyleSheet.create({
   actionsBar: {
-    flex: 0.1,
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
     padding: 12,
   },
   iconsRow: {

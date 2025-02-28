@@ -21,7 +21,7 @@ const create = ({ image }: CreateTabProps) => {
   return (
     <View style={styles.container}>
       <SocialMediaSelectButton />
-      <View style={styles.content}>
+      <View style={styles.imageAreaContainer}>
         <ImageArea />
       </View>
       <ActionsBar />
@@ -33,10 +33,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {
-    flex: 0.8,
-    justifyContent: "center",
-    alignItems: "center",
+  imageAreaContainer: {
+    flex: 1,
   },
 });
 
