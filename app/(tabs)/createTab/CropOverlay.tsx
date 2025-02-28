@@ -1,15 +1,22 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
-const RATIO = 4 / 5;
+import store from "@/store";
+import { Ratio, RootState } from "@/types";
+import { connect } from "react-redux";
 
 const screenWidth = Dimensions.get("window").width;
 
-const CropOverlay = () => {
+type CropOverlayProps = {
+  ratio: Ratio;
+};
+
+const CropOverlay = ({ ratio }: CropOverlayProps) => {
+  const cropAreaHeight = (screenWidth / ratio.w) * ratio.h;
+
   return (
     <View style={styles.overlayContainer}>
-      <View style={styles.cropArea} />
+      <View style={[styles.cropArea, { height: cropAreaHeight }]} />
       <LinearGradient
         colors={["rgba(255, 255, 255, 0.5)", "rgb(255, 255, 255)"]}
         style={styles.bottomOverlay}
@@ -27,7 +34,6 @@ const styles = StyleSheet.create({
   },
   cropArea: {
     width: screenWidth,
-    aspectRatio: RATIO,
   },
   bottomOverlay: {
     width: screenWidth,
@@ -35,4 +41,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CropOverlay;
+const mapStateToProps = (state: RootState) => ({
+  ratio: state.slice.ratio,
+});
+
+export default connect(mapStateToProps)(CropOverlay);

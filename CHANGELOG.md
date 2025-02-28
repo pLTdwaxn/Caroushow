@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The Slicing logic
 - A button to reset the image selected
 - A crop overlay to preview the area kept after slicing
+- Slice reducer for storing slicing parameters and slicing now takes aspect ratio into account
 
 ### Changed
 

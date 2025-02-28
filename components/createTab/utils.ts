@@ -21,12 +21,15 @@ export const sliceImage = () => {
   const columns = 3;
   const columnWidth = Math.floor(width / columns);
 
+  const { ratio } = store.getState().slice;
+  const calculatedHeight = Math.floor((columnWidth / ratio.w) * ratio.h);
+
   const actions = Array.from({ length: columns }, (_, i) => ({
     crop: {
       originX: i * columnWidth,
       originY: 0,
       width: columnWidth,
-      height,
+      height: calculatedHeight,
     },
   }));
 
