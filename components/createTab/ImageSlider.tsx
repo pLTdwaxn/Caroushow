@@ -1,18 +1,32 @@
 import { ImageState } from "@/types";
 import { connect } from "react-redux";
 import { View, FlatList, Image, StyleSheet, Dimensions } from "react-native";
+import CropOverlay from "@/app/(tabs)/createTab/CropOverlay";
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
 type ImageSliderProps = {
   image: ImageState;
 };
 
 const ImageSlider = ({ image }: ImageSliderProps) => {
+  const imageWidth = image.asset ? image.asset.width : 0;
+  const imageHeight = image.asset ? image.asset.height : 0;
+
+  const imageContainerDimensions = {
+    width: screenWidth * 3,
+    height: imageWidth
+      ? (screenWidth * 3 * imageHeight) / imageWidth
+      : screenHeight,
+  };
+
   const renderItem = ({ item }: { item: { uri: string } }) => (
-    <View style={styles.imageContainer}>
+    <View style={[imageContainerDimensions, styles.imageContainer]}>
       <Image
         style={styles.image}
         source={{ uri: item.uri }}
-        resizeMode="center"
+        resizeMode="contain"
       />
     </View>
   );
@@ -20,20 +34,20 @@ const ImageSlider = ({ image }: ImageSliderProps) => {
   return (
     <View style={styles.imageSlider}>
       {image.asset && (
-        <FlatList
-          horizontal
-          data={[image.asset]}
-          renderItem={renderItem}
-          snapToInterval={screenWidth}
-          decelerationRate="fast"
-        />
+        <>
+          <FlatList
+            horizontal
+            data={[image.asset]}
+            renderItem={renderItem}
+            snapToInterval={screenWidth}
+            decelerationRate="fast"
+          />
+          <CropOverlay />
+        </>
       )}
     </View>
   );
 };
-
-const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   imageSlider: {
@@ -41,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   imageContainer: {
-    width: screenWidth * 3,
+    justifyContent: "flex-start",
   },
   image: {
     width: "100%",
