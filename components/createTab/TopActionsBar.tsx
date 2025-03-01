@@ -9,7 +9,9 @@ const TopActionsBar = () => {
         <View style={styles.button}>
           <Button title="Select Social Media" />
         </View>
-        <AspectRatioLabel />
+        <View style={styles.aspectRatioLabel}>
+          <AspectRatioLabel />
+        </View>
       </View>
     </View>
   );
@@ -29,7 +31,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   button: {
-    flex: 1,
+    flex: 0.85,
+  },
+  aspectRatioLabel: {
+    flex: 0.15,
   },
 });
 
