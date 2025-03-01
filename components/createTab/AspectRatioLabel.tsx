@@ -1,31 +1,31 @@
 import { Ratio } from "@/types";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { cycleRatio } from "@/store/slices/sliceSlice";
+import store from "@/store";
 
 type AspectRatioLabelProps = {
   ratio: Ratio;
 };
 
 const AspectRatioLabel = ({ ratio }: AspectRatioLabelProps) => {
+  const handlePress = () => {
+    store.dispatch(cycleRatio());
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        {ratio.h} : {ratio.w}
-      </Text>
+      <Button title={`${ratio.w} : ${ratio.h}`} onPress={handlePress} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 6,
     borderRadius: 8,
-  },
-  text: {
-    fontSize: 16,
+    backgroundColor: "#cfc",
   },
 });
 
@@ -35,4 +35,10 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(AspectRatioLabel);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    cycleRatio: () => dispatch(cycleRatio()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AspectRatioLabel);
