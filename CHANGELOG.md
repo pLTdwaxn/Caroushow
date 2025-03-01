@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated project readme
 - Aspect Ratio label becomes a button for cycling through aspect ratio
+- Updated App icon
 
 ### Removed
 
