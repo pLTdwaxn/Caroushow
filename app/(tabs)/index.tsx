@@ -3,8 +3,8 @@ import { ImageState } from "@/types";
 import ImageSlider from "@/components/createTab/ImageSlider";
 import { connect } from "react-redux";
 import ImageSelectButton from "@/components/createTab/ImageSelectButton";
-import SocialMediaSelectButton from "@/components/createTab/SocialMediaSelectButton";
-import ActionsBar from "./createTab/ActionsBar";
+import TopActionsBar from "@/components/createTab/TopActionsBar";
+import ActionsBar from "@/components/createTab/ActionsBar";
 
 type CreateTabProps = {
   image: ImageState;
@@ -20,7 +20,7 @@ const create = ({ image }: CreateTabProps) => {
 
   return (
     <View style={styles.container}>
-      <SocialMediaSelectButton />
+      <TopActionsBar />
       <View style={styles.imageAreaContainer}>
         <ImageArea />
       </View>

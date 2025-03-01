@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import SocialMediaSelectButton from "@/components/createTab/SocialMediaSelectButton";
+import TopActionsBar from "@/components/createTab/TopActionsBar";
 
-describe("SocialMediaSelectButton Component", () => {
+describe("TopActionsBar Component", () => {
   it("renders correctly", () => {
-    const { getByText } = render(<SocialMediaSelectButton />);
+    const { getByText } = render(<TopActionsBar />);
     expect(getByText("Select Social Media")).toBeTruthy();
   });
 });
