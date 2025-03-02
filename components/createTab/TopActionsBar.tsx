@@ -1,17 +1,13 @@
 import AspectRatioLabel from "./AspectRatioLabel";
-import {} from "./utils";
-import { View, Button, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import SocialMediaSelect from "./SocialMediaSelect";
 
 const TopActionsBar = () => {
   return (
     <View style={styles.topActionsBarContainer}>
       <View style={styles.iconsRow}>
-        <View style={styles.button}>
-          <Button title="Select Social Media" />
-        </View>
-        <View style={styles.aspectRatioLabel}>
-          <AspectRatioLabel />
-        </View>
+        <SocialMediaSelect />
+        <AspectRatioLabel />
       </View>
     </View>
   );
@@ -19,9 +15,13 @@ const TopActionsBar = () => {
 
 const styles = StyleSheet.create({
   topActionsBarContainer: {
-    flex: 0.1,
     justifyContent: "center",
     alignItems: "center",
+    position: "absolute",
+    top: 0,
+    backgroundColor: "transparent",
+    zIndex: 1,
+    paddingTop: 12,
   },
   iconsRow: {
     flexDirection: "row",
@@ -29,12 +29,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 12,
-  },
-  button: {
-    flex: 0.85,
-  },
-  aspectRatioLabel: {
-    flex: 0.15,
   },
 });
 

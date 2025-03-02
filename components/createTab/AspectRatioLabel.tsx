@@ -1,8 +1,7 @@
 import { Ratio } from "@/types";
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { cycleRatio } from "@/store/slices/sliceSlice";
 import store from "@/store";
 
@@ -24,8 +23,9 @@ const AspectRatioLabel = ({ ratio }: AspectRatioLabelProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 8,
-    backgroundColor: "#cfc",
+    flex: 0,
+    borderRadius: 2,
+    backgroundColor: "rgba(204, 255, 204, 0.5)", // Changed to slightly transparent
   },
 });
 
@@ -35,10 +35,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    cycleRatio: () => dispatch(cycleRatio()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AspectRatioLabel);
+export default connect(mapStateToProps)(AspectRatioLabel);

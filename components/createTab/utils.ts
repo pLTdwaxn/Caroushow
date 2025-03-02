@@ -56,3 +56,7 @@ export const sliceImage = () => {
       });
     });
 };
+
+export const selectSocialMedia = () => {
+  return;
+};
