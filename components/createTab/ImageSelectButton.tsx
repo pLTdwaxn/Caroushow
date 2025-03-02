@@ -1,8 +1,33 @@
 import { pickImageAsync } from "./utils";
-import { Button } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 
 const ImageSelectButton = () => {
-  return <Button title="Select Image" onPress={pickImageAsync}></Button>;
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={pickImageAsync}>
+        <Text style={styles.buttonText}>Select Image</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#007BFF",
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+  },
+});
 
 export default ImageSelectButton;

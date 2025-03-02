@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A crop overlay to preview the area kept after slicing
 - Slice reducer for storing slicing parameters and slicing now takes aspect ratio into account
 - A label to indicate the aspect ratio in use for slicing
+- A mocked Social Media indicator
 
 ### Changed
 
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Aspect Ratio label becomes a button for cycling through aspect ratio
 - Updated App icon
 - Internally renamed Actions Bar to Bottom Actions Bar
+- Made Top Actions Bar transparent
 
 ### Removed
 

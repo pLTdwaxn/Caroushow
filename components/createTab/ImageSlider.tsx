@@ -2,6 +2,7 @@ import { ImageState } from "@/types";
 import { connect } from "react-redux";
 import { View, FlatList, Image, StyleSheet, Dimensions } from "react-native";
 import CropOverlay from "@/components/createTab/CropOverlay";
+import AspectRatioLabel from "@/components/createTab/AspectRatioLabel";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;

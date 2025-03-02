@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import IconButton from "@/components/createTab/IconButton";
+import IconButton from "@/components/IconButton";
 import { sliceImage } from "@/components/createTab/utils";
 
 import { resetImage } from "@/store/slices/imageSlice";
