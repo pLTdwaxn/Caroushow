@@ -4,7 +4,7 @@ import ImageSlider from "@/components/createTab/ImageSlider";
 import { connect } from "react-redux";
 import ImageSelectButton from "@/components/createTab/ImageSelectButton";
 import TopActionsBar from "@/components/createTab/TopActionsBar";
-import ActionsBar from "@/components/createTab/ActionsBar";
+import BottomActionsBar from "@/components/createTab/BottomActionsBar";
 
 type CreateTabProps = {
   image: ImageState;
@@ -24,7 +24,7 @@ const create = ({ image }: CreateTabProps) => {
       <View style={styles.imageAreaContainer}>
         <ImageArea />
       </View>
-      <ActionsBar />
+      <BottomActionsBar />
     </View>
   );
 };
