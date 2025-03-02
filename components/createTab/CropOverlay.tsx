@@ -18,9 +18,10 @@ const CropOverlay = ({ ratio }: CropOverlayProps) => {
     <View style={styles.overlayContainer}>
       <View style={[styles.cropArea, { height: cropAreaHeight }]} />
       <LinearGradient
-        colors={["rgba(255, 255, 255, 0.5)", "rgb(255, 255, 255)"]}
-        style={styles.bottomOverlay}
+        colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
+        style={styles.dragHandle}
       />
+      <View style={styles.bottomOverlay}></View>
     </View>
   );
 };
@@ -35,9 +36,14 @@ const styles = StyleSheet.create({
   cropArea: {
     width: screenWidth,
   },
-  bottomOverlay: {
+  dragHandle: {
     width: screenWidth,
+    height: 20,
+  },
+  bottomOverlay: {
     flex: 1,
+    width: screenWidth,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
 });
 
