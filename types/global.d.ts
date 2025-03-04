@@ -6,7 +6,7 @@ declare module "@/types" {
   }
 
   export interface SliceState {
-    ratio: { w: number; h: number };
+    ratio: Ratio;
     slices: number;
   }
 
@@ -18,5 +18,7 @@ declare module "@/types" {
   export interface Ratio {
     w: number;
     h: number;
+    fraction: string;
+    decimal: number;
   }
 }
