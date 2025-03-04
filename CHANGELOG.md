@@ -33,6 +33,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed buttons shown in the bottom bar
 - Made the bar separating crop preview and bottom shade draggable
 - Changed the Ratio interface definition to include fraction and decimal
+- Swiping on the Image Slider is no longer blocked by the Crop Overlay
+- The slide handle shows the decimal crop ratio at the centre, updated in real-time
+- Image Slicing is now based on the decimal ratio instead of the fraction
 
 ### Removed
 

@@ -16,9 +16,9 @@ declare module "@/types" {
   }
 
   export interface Ratio {
-    w: number;
-    h: number;
-    fraction: string;
+    w?: number;
+    h?: number;
+    fraction?: string;
     decimal: number;
   }
 }

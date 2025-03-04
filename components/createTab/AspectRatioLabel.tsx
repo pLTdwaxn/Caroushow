@@ -16,7 +16,12 @@ const AspectRatioLabel = ({ ratio }: AspectRatioLabelProps) => {
 
   return (
     <View style={styles.container}>
-      <Button title={ratio.fraction} onPress={handlePress} />
+      <Button
+        title={
+          ratio.fraction ? ratio.fraction.toString() : ratio.decimal.toString()
+        }
+        onPress={handlePress}
+      />
     </View>
   );
 };

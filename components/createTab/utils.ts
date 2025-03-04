@@ -22,7 +22,7 @@ export const sliceImage = () => {
   const columnWidth = Math.floor(width / columns);
 
   const { ratio } = store.getState().slice;
-  const calculatedHeight = Math.floor((columnWidth / ratio.w) * ratio.h);
+  const calculatedHeight = Math.floor(columnWidth * ratio.decimal);
 
   const actions = Array.from({ length: columns }, (_, i) => ({
     crop: {

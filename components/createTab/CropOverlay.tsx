@@ -6,10 +6,13 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import { ReText } from "react-native-redash";
 
 import { LinearGradient } from "expo-linear-gradient";
 
 import { Ratio, RootState } from "@/types";
+import { setRatio } from "@/store/slices/sliceSlice";
+import store from "@/store";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -20,12 +23,29 @@ type CropOverlayProps = {
 const CropOverlay = ({ ratio }: CropOverlayProps) => {
   const cropAreaHeight = screenWidth * ratio.decimal;
   const offsetY = useSharedValue(0);
+  const realTimeRatio = useSharedValue(ratio.decimal.toString());
 
   const pan = Gesture.Pan()
     .onUpdate((e) => {
-      offsetY.value = e.translationY;
+      offsetY.set(e.translationY);
+      realTimeRatio.set(
+        ((cropAreaHeight + offsetY.get()) / screenWidth).toFixed(4)
+      );
     })
-    .onEnd(() => {});
+    .onEnd(() => {
+      const newRatio = (cropAreaHeight + offsetY.value) / screenWidth;
+      store.dispatch(setRatio({ decimal: newRatio }));
+      offsetY.value = 0;
+    })
+    .runOnJS(true);
+
+  const tap = Gesture.Tap()
+    .onEnd(() => {
+      console.log("Tapped");
+    })
+    .runOnJS(true);
+
+  const composedGesture = Gesture.Race(pan, tap);
 
   const animatedStyle = useAnimatedStyle(() => ({
     height: cropAreaHeight + offsetY.value,
@@ -37,18 +57,16 @@ const CropOverlay = ({ ratio }: CropOverlayProps) => {
         style={[styles.cropArea, animatedStyle]}
         pointerEvents="none"
       />
-      <GestureDetector gesture={pan}>
+      <GestureDetector gesture={composedGesture}>
         <LinearGradient
           colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
           style={styles.dragHandle}
         >
-          <Text style={styles.ratioDecimalLabel}>
-            {ratio.decimal.toFixed(2)}
-          </Text>
+          <ReText style={styles.ratioDecimalLabel} text={realTimeRatio} />
         </LinearGradient>
       </GestureDetector>
 
-      <View style={styles.bottomOverlay}></View>
+      <View style={styles.bottomOverlay} pointerEvents="none"></View>
     </View>
   );
 };

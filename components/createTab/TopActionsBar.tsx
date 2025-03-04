@@ -1,4 +1,3 @@
-import AspectRatioLabel from "./AspectRatioLabel";
 import { View, StyleSheet } from "react-native";
 import SocialMediaSelect from "./SocialMediaSelect";
 
@@ -7,7 +6,6 @@ const TopActionsBar = () => {
     <View style={styles.topActionsBarContainer}>
       <View style={styles.iconsRow}>
         <SocialMediaSelect />
-        <AspectRatioLabel />
       </View>
     </View>
   );
