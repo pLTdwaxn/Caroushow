@@ -32,20 +32,18 @@ const ImageSlider = ({ image }: ImageSliderProps) => {
   );
 
   return (
-    <View style={styles.imageSlider}>
-      {image.asset && (
-        <>
-          <FlatList
-            horizontal
-            data={[image.asset]}
-            renderItem={renderItem}
-            snapToInterval={screenWidth}
-            decelerationRate="fast"
-          />
-          <CropOverlay />
-        </>
-      )}
-    </View>
+    image.asset && (
+      <View style={styles.imageSlider}>
+        <FlatList
+          horizontal
+          data={[image.asset]}
+          renderItem={renderItem}
+          snapToInterval={screenWidth}
+          decelerationRate="fast"
+        />
+        <CropOverlay />
+      </View>
+    )
   );
 };
 
