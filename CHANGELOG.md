@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made Top Actions Bar transparent
 - Removed tabs and use single page design instead
 - Changed buttons shown in the bottom bar
+- Made the bar separating crop preview and bottom shade draggable
+- Changed the Ratio interface definition to include fraction and decimal
 
 ### Removed
 

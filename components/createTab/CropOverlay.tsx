@@ -1,9 +1,15 @@
-import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import store from "@/store";
-import { Ratio, RootState } from "@/types";
+import { View, StyleSheet, Dimensions, Text } from "react-native";
 import { connect } from "react-redux";
+
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+
+import { LinearGradient } from "expo-linear-gradient";
+
+import { Ratio, RootState } from "@/types";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -12,15 +18,33 @@ type CropOverlayProps = {
 };
 
 const CropOverlay = ({ ratio }: CropOverlayProps) => {
-  const cropAreaHeight = (screenWidth / ratio.w) * ratio.h;
+  const cropAreaHeight = screenWidth * ratio.decimal;
+  const offsetY = useSharedValue(0);
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      offsetY.value = e.translationY;
+    })
+    .onEnd(() => {});
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    height: cropAreaHeight + offsetY.value,
+  }));
 
   return (
     <View style={styles.overlayContainer}>
-      <View style={[styles.cropArea, { height: cropAreaHeight }]} />
-      <LinearGradient
-        colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
-        style={styles.dragHandle}
-      />
+      <Animated.View style={[styles.cropArea, animatedStyle]} />
+      <GestureDetector gesture={pan}>
+        <LinearGradient
+          colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
+          style={styles.dragHandle}
+        >
+          <Text style={styles.ratioDecimalLabel}>
+            {ratio.decimal.toFixed(2)}
+          </Text>
+        </LinearGradient>
+      </GestureDetector>
+
       <View style={styles.bottomOverlay}></View>
     </View>
   );
@@ -39,6 +63,11 @@ const styles = StyleSheet.create({
   dragHandle: {
     width: screenWidth,
     height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ratioDecimalLabel: {
+    color: "white",
   },
   bottomOverlay: {
     flex: 1,
