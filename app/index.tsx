@@ -1,4 +1,5 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ImageState } from "@/types";
 import ImageSlider from "@/components/createTab/ImageSlider";
 import { connect } from "react-redux";
@@ -19,13 +20,13 @@ const create = ({ image }: CreateTabProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       {image.asset !== null && <TopActionsBar />}
       <View style={styles.imageAreaContainer}>
         <ImageArea />
       </View>
       <BottomActionsBar />
-    </View>
+    </GestureHandlerRootView>
   );
 };
 
