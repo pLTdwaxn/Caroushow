@@ -1,8 +1,11 @@
 import * as ImagePicker from "expo-image-picker";
 import { ImageManipulator, SaveFormat } from "expo-image-manipulator";
 import * as MediaLibrary from "expo-media-library";
+
 import store from "@/store";
 import { setImage } from "@/store/slices/imageSlice";
+
+import aspectRatioList from "./aspectRatioLists";
 
 export const pickImageAsync = async () => {
   try {
@@ -14,6 +17,15 @@ export const pickImageAsync = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const cycleAspectRatio = (currentRatio: number) => {
+  console.log("currentRatio", currentRatio);
+  const currentIndex = aspectRatioList.findIndex(
+    (ratio) => ratio.decimal >= currentRatio
+  );
+  const nextIndex = (currentIndex + 1) % aspectRatioList.length;
+  return aspectRatioList[nextIndex];
 };
 
 export const sliceImage = () => {
