@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 
-import IconButton from "@/components/IconButton";
+import IconButton from "@/components/shared/IconButton";
 
-import socialMediaList from "./socialMediaList";
+import socialMediaList from "../fixtures/socialMediaList";
 
 const SocialMediaSelect = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);

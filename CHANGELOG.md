@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Image Slicing is now based on the decimal ratio instead of the fraction
 - Updated README to more accurately present the app
 - Moved gesture handling logic into a separate hook component
+- Refactored the project's folder structure
 
 ### Removed
 

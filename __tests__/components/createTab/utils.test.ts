@@ -1,4 +1,4 @@
-import { pickImageAsync } from "@/components/createTab/utils";
+import { pickImageAsync } from "@/utils/utils";
 import * as ImagePicker from "expo-image-picker";
 import store from "@/store";
 import { setImage } from "@/store/slices/imageSlice";

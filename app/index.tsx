@@ -5,10 +5,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { StatusBar } from "expo-status-bar";
 
-import ImageSelectButton from "@/components/createTab/ImageSelectButton";
-import TopActionsBar from "@/components/createTab/TopActionsBar";
-import BottomActionsBar from "@/components/createTab/BottomActionsBar";
-import ImageSlider from "@/components/createTab/ImageSlider";
+import ImageSelectButton from "@/components/ImageSelectButton";
+import TopActionsBar from "@/components/TopActionsBar";
+import BottomActionsBar from "@/components/BottomActionsBar";
+import ImageSlider from "@/components/ImageSlider";
 
 import { ImageState } from "@/types";
 

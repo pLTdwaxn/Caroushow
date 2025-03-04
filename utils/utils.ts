@@ -5,7 +5,7 @@ import * as MediaLibrary from "expo-media-library";
 import store from "@/store";
 import { setImage } from "@/store/slices/imageSlice";
 
-import aspectRatioList from "./aspectRatioLists";
+import aspectRatioList from "../fixtures/aspectRatioLists";
 
 export const pickImageAsync = async () => {
   try {
