@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Slice reducer for storing slicing parameters and slicing now takes aspect ratio into account
 - A label to indicate the aspect ratio in use for slicing
 - A mocked Social Media indicator
+- Ability to choose from a predefined list of social media
 
 ### Changed
 
