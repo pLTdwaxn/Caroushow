@@ -1,22 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Ratio } from "@/types";
 
-// Ranked from most square to most rectangular
 const ratioPresets = [
-  { w: 12, h: 12, fraction: "1:1", decimal: 1.0 }, // 1.0
-  { w: 12, h: 15, fraction: "5:4", decimal: 1.25 }, // 0.8
-  { w: 12, h: 16, fraction: "4:3", decimal: 1.33 }, // 0.75
-  { w: 12, h: 18, fraction: "3:2", decimal: 1.5 }, // 0.67
-  { w: 12, h: 20, fraction: "5:3", decimal: 1.67 }, // 0.6
+  { w: 1, h: 1 }, // 1.0
+  { w: 4, h: 5 }, // 0.8
+  { w: 3, h: 4 }, // 0.75
+  { w: 5, h: 7 }, // 0.71
+  { w: 2, h: 3 }, // 0.67
+  { w: 3, h: 5 }, // 0.6
 ];
+// Ranked from most square to most rectangular
 
 const initialState = {
-  ratio: ratioPresets[0],
+  ratio: { w: 1, h: 1 },
   slices: 3,
 };
 
 const sliceSlice = createSlice({
-  name: "slice",
+  name: "image",
   initialState,
   reducers: {
     setRatio: (state, action: PayloadAction<Ratio>) => {
