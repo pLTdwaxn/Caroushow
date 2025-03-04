@@ -16,7 +16,7 @@ const AspectRatioLabel = ({ ratio }: AspectRatioLabelProps) => {
 
   return (
     <View style={styles.container}>
-      <Button title={ratio.fraction} onPress={handlePress} />
+      <Button title={`${ratio.w} : ${ratio.h}`} onPress={handlePress} />
     </View>
   );
 };
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     borderRadius: 2,
-    backgroundColor: "rgba(204, 255, 204, 0.5)",
+    backgroundColor: "rgba(204, 255, 204, 0.5)", // Changed to slightly transparent
   },
 });
 
