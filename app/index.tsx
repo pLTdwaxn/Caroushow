@@ -1,12 +1,16 @@
-import { View, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { ImageState } from "@/types";
-import ImageSlider from "@/components/createTab/ImageSlider";
 import { connect } from "react-redux";
+
+import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import { StatusBar } from "expo-status-bar";
+
 import ImageSelectButton from "@/components/createTab/ImageSelectButton";
 import TopActionsBar from "@/components/createTab/TopActionsBar";
 import BottomActionsBar from "@/components/createTab/BottomActionsBar";
-import { StatusBar } from "expo-status-bar";
+import ImageSlider from "@/components/createTab/ImageSlider";
+
+import { ImageState } from "@/types";
 
 type CreateTabProps = {
   image: ImageState;
@@ -24,9 +28,7 @@ const create = ({ image }: CreateTabProps) => {
     <>
       <GestureHandlerRootView style={styles.container}>
         {image.asset !== null && <TopActionsBar />}
-        <View style={styles.imageAreaContainer}>
-          <ImageArea />
-        </View>
+        <ImageArea />
         <BottomActionsBar />
         <StatusBar style="dark" />
       </GestureHandlerRootView>
@@ -36,9 +38,6 @@ const create = ({ image }: CreateTabProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  imageAreaContainer: {
     flex: 1,
   },
 });

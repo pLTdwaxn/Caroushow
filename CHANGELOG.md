@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The slide handle shows the decimal crop ratio at the centre, updated in real-time
 - Image Slicing is now based on the decimal ratio instead of the fraction
 - Updated README to more accurately present the app
+- Moved gesture handling logic into a separate hook component
 
 ### Removed
 

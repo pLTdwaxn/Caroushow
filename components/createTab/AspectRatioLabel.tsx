@@ -9,6 +9,7 @@ type AspectRatioLabelProps = {
   ratio: Ratio;
 };
 
+// Not in use anymore
 const AspectRatioLabel = ({ ratio }: AspectRatioLabelProps) => {
   const handlePress = () => {
     store.dispatch(cycleRatio());

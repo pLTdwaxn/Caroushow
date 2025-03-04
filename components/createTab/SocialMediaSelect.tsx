@@ -16,7 +16,13 @@ const SocialMediaSelect = () => {
   };
 
   const handleSelectPlatform = (
-    platform: SetStateAction<{ name: string; icon: string; color: string }>
+    platform: SetStateAction<{
+      name: string;
+      icon: string;
+      color: string;
+      minRatio: number;
+      maxRatio: number;
+    }>
   ) => {
     setSelectedPlatform(platform);
     setDropdownVisible(false);
