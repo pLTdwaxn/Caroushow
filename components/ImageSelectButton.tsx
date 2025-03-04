@@ -1,4 +1,4 @@
-import { pickImageAsync } from "./utils";
+import { pickImageAsync } from "../utils/utils";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 
 const ImageSelectButton = () => {

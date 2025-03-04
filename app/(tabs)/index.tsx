@@ -1,10 +1,10 @@
 import { Text, View, StyleSheet } from "react-native";
 import { ImageState } from "@/types";
-import ImageSlider from "@/components/createTab/ImageSlider";
+import ImageSlider from "@/components/ImageSlider";
 import { connect } from "react-redux";
-import ImageSelectButton from "@/components/createTab/ImageSelectButton";
-import TopActionsBar from "@/components/createTab/TopActionsBar";
-import BottomActionsBar from "@/components/createTab/BottomActionsBar";
+import ImageSelectButton from "@/components/ImageSelectButton";
+import TopActionsBar from "@/components/TopActionsBar";
+import BottomActionsBar from "@/components/BottomActionsBar";
 
 type CreateTabProps = {
   image: ImageState;

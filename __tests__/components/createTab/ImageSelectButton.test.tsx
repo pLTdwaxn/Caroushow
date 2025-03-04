@@ -1,9 +1,9 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import ImageSelectButton from "../../../components/createTab/ImageSelectButton";
-import * as utils from "../../../components/createTab/utils";
+import ImageSelectButton from "../../../components/ImageSelectButton";
+import * as utils from "../../../utils/utils";
 
-jest.mock("../../../components/createTab/utils");
+jest.mock("../../../utils/utils");
 
 describe("ImageSelectButton", () => {
   it("renders correctly", () => {
@@ -12,6 +12,7 @@ describe("ImageSelectButton", () => {
   });
 
   it("calls pickImageAsync on button press", () => {
+    jest.spyOn(utils, "pickImageAsync").mockImplementation(jest.fn()); // Mock the function implementation
     const { getByText } = render(<ImageSelectButton />);
     fireEvent.press(getByText("Select Image"));
     expect(utils.pickImageAsync).toHaveBeenCalled();

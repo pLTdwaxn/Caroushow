@@ -2,8 +2,8 @@ import { View, StyleSheet } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import IconButton from "@/components/IconButton";
-import { pickImageAsync, sliceImage } from "@/components/createTab/utils";
+import IconButton from "@/components/shared/IconButton";
+import { pickImageAsync, sliceImage } from "@/utils/utils";
 
 const BottomActionsBar = () => {
   const ShareIcon = <Ionicons name="share-outline" size={24} />;
