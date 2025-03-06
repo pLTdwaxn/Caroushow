@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A label to indicate the aspect ratio in use for slicing
 - A mocked Social Media indicator
 - Ability to choose from a predefined list of social media
+- Ability to vertically pan the image (not affecting slicing yet)
 
 ### Changed
 
@@ -40,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated README to more accurately present the app
 - Moved gesture handling logic into a separate hook component
 - Refactored the project's folder structure
+- Changed Image Slider from using FlatList to ScrollView for gesture compatibility
 
 ### Removed
 

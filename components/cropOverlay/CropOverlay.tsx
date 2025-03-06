@@ -19,7 +19,7 @@ const CropOverlay = ({ ratio }: CropOverlayProps) => {
     useCropOverlayGestures(ratio.decimal);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    height: cropAreaHeight + offsetY.value,
+    height: cropAreaHeight + offsetY.get(),
   }));
 
   return (
