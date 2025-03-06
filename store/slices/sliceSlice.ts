@@ -10,6 +10,7 @@ const ratioPresets = [
 ];
 
 const initialState = {
+  offsetY: 0,
   ratio: ratioPresets[0],
   slices: 3,
 };
@@ -18,6 +19,9 @@ const sliceSlice = createSlice({
   name: "slice",
   initialState,
   reducers: {
+    setOffsetY: (state, action: PayloadAction<number>) => {
+      state.offsetY = action.payload;
+    },
     setRatio: (state, action: PayloadAction<Ratio>) => {
       state.ratio = action.payload;
     },
@@ -34,5 +38,6 @@ const sliceSlice = createSlice({
   },
 });
 
-export const { setRatio, cycleRatio, setSlices } = sliceSlice.actions;
+export const { setOffsetY, setRatio, cycleRatio, setSlices } =
+  sliceSlice.actions;
 export default sliceSlice.reducer;
