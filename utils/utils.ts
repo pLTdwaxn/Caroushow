@@ -29,11 +29,11 @@ export const cycleAspectRatio = (currentRatio: number) => {
 };
 
 export const sliceImage = () => {
-  const { uri, width, height } = store.getState().image.asset;
-  const columns = 3;
-  const columnWidth = Math.floor(width / columns);
+  const { uri, width } = store.getState().image.asset;
+  const { offsetY, ratio } = store.getState().slice;
+  const columns = store.getState().slice.slices;
 
-  const { ratio } = store.getState().slice;
+  const columnWidth = Math.floor(width / columns);
   const calculatedHeight = Math.floor(columnWidth * ratio.decimal);
 
   const actions = Array.from({ length: columns }, (_, i) => ({

@@ -6,6 +6,7 @@ declare module "@/types" {
   }
 
   export interface SliceState {
+    offsetY: number;
     ratio: Ratio;
     slices: number;
   }
