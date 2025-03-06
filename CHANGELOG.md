@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved gesture handling logic into a separate hook component
 - Refactored the project's folder structure
 - Changed Image Slider from using FlatList to ScrollView for gesture compatibility
+- Moved Image Slider's gesture handling into a hook
 
 ### Removed
 
