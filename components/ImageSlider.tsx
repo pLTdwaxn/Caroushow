@@ -1,16 +1,13 @@
-import { View, Image, StyleSheet, Dimensions, ScrollView } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
+import { View, StyleSheet, Dimensions } from "react-native";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
 import { connect, useDispatch } from "react-redux";
 
 import CropOverlay from "@/components/cropOverlay/CropOverlay";
 import { ImageState } from "@/types";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { GestureDetector } from "react-native-gesture-handler";
 
-import { setOffsetY } from "@/store/slices/sliceSlice";
+import usePanGesture from "@/hooks/useImageSliderGesture";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -26,7 +23,7 @@ const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
-  const offsetDelta = useSharedValue(0);
+  const { pan, offsetDelta } = usePanGesture(offsetY);
 
   const imageContainerDimensions = {
     width: screenWidth * 3,
@@ -34,18 +31,6 @@ const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
       ? (screenWidth * 3 * imageHeight) / imageWidth
       : screenHeight,
   };
-
-  const pan = Gesture.Pan()
-    .onUpdate((e) => {
-      offsetDelta.set(e.translationY);
-    })
-    .onEnd(() => {
-      const newOffsetY =
-        offsetY + offsetDelta.value > 0 ? 0 : offsetY + offsetDelta.value;
-      dispatch(setOffsetY(newOffsetY));
-      offsetDelta.set(0);
-    })
-    .runOnJS(true);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: offsetY + offsetDelta.value }],
