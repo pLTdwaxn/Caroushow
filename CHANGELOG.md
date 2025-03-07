@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to choose from a predefined list of social media
 - EAS dev build config
 - Ability to vertically pan the image (not affecting slicing yet)
+- Auto bounce back when image panning is outside a nonsense range
 
 ### Changed
 
