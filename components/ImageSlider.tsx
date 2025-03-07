@@ -1,5 +1,9 @@
+import { useEffect } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  withSpring,
+} from "react-native-reanimated";
 
 import { connect, useDispatch } from "react-redux";
 
@@ -18,8 +22,6 @@ type ImageSliderProps = {
 };
 
 const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
-  const dispatch = useDispatch();
-
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
