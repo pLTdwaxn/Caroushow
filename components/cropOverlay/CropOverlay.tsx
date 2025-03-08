@@ -1,25 +1,26 @@
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
-import { Ratio, RootState } from "@/types";
+import { RootState } from "@/types";
 import { useCropOverlayGestures } from "@/hooks/useCropOverlayGestures";
 import DragHandle from "./DragHandle";
 
-const screenWidth = Dimensions.get("window").width;
-
 type CropOverlayProps = {
-  ratio: Ratio;
+  deviceWidth: number;
+  ratio: number;
 };
 
-const CropOverlay = ({ ratio }: CropOverlayProps) => {
-  const { composedGesture, offsetY, realTimeRatio, cropAreaHeight } =
-    useCropOverlayGestures(ratio.decimal);
+const CropOverlay = ({ deviceWidth, ratio }: CropOverlayProps) => {
+  const { composedGesture, updatedHeight } = useCropOverlayGestures(
+    deviceWidth,
+    ratio
+  );
 
   const animatedStyle = useAnimatedStyle(() => ({
-    height: cropAreaHeight + offsetY.get(),
+    height: updatedHeight.value,
   }));
 
   return (
@@ -30,7 +31,7 @@ const CropOverlay = ({ ratio }: CropOverlayProps) => {
       />
 
       <GestureDetector gesture={composedGesture}>
-        <DragHandle realTimeRatio={realTimeRatio} />
+        <DragHandle />
       </GestureDetector>
 
       <View style={styles.bottomOverlay} pointerEvents="none"></View>
@@ -46,16 +47,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   cropArea: {
-    width: screenWidth,
+    width: "100%",
   },
   bottomOverlay: {
     flex: 1,
-    width: screenWidth,
+    width: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
 });
 
 const mapStateToProps = (state: RootState) => ({
+  deviceWidth: state.device.width,
   ratio: state.slice.ratio,
 });
 
