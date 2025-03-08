@@ -15,8 +15,8 @@ import store from "@/store";
 import { setDevice } from "@/store/slices/deviceSlice";
 
 const deviceDimensions = {
-  width: Dimensions.get("window").width,
-  height: Dimensions.get("window").height,
+  screenWidth: Dimensions.get("window").width,
+  screenHeight: Dimensions.get("window").height,
 };
 
 store.dispatch(setDevice(deviceDimensions));

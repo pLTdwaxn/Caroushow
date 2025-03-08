@@ -2,23 +2,23 @@ declare module "@/types" {
   export { ImagePickerAsset, ImagePickerOptions } from "expo-image-picker";
 
   export interface DeviceState {
-    width: number;
-    height: number;
+    screenWidth: number;
+    screenHeight: number;
   }
 
   export interface ImageState {
     asset: ImagePickerAsset | null;
   }
 
-  export interface SliceState {
+  export interface ParamState {
     offsetY: number;
-    ratio: number;
+    aspectRatio: number;
     slices: number;
   }
 
   export interface RootState {
     device: DeviceState;
     image: ImageState;
-    slice: SliceState;
+    param: ParamState;
   }
 }

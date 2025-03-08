@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DeviceState } from "@/types";
 
 const initialState: DeviceState = {
-  width: 0,
-  height: 0,
+  screenWidth: 0,
+  screenHeight: 0,
 };
 
 const deviceSlice = createSlice({
@@ -11,8 +11,8 @@ const deviceSlice = createSlice({
   initialState,
   reducers: {
     setDevice: (state, action: PayloadAction<DeviceState>) => {
-      state.width = action.payload.width;
-      state.height = action.payload.height;
+      state.screenWidth = action.payload.screenWidth;
+      state.screenHeight = action.payload.screenHeight;
     },
   },
 });

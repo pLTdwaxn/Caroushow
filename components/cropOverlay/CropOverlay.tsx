@@ -9,14 +9,14 @@ import { useCropOverlayGestures } from "@/hooks/useCropOverlayGestures";
 import DragHandle from "./DragHandle";
 
 type CropOverlayProps = {
-  deviceWidth: number;
-  ratio: number;
+  screenWidth: number;
+  aspectRatio: number;
 };
 
-const CropOverlay = ({ deviceWidth, ratio }: CropOverlayProps) => {
+const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
   const { composedGesture, updatedHeight } = useCropOverlayGestures(
-    deviceWidth,
-    ratio
+    screenWidth,
+    aspectRatio
   );
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: RootState) => ({
-  deviceWidth: state.device.width,
-  ratio: state.slice.ratio,
+  screenWidth: state.device.screenWidth,
+  aspectRatio: state.param.aspectRatio,
 });
 
 export default connect(mapStateToProps)(CropOverlay);

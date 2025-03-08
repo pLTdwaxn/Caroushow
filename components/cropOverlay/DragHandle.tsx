@@ -5,16 +5,16 @@ import { RootState } from "@/types";
 import { connect } from "react-redux";
 
 type DragHandleProps = {
-  ratio: number;
+  aspectRatio: number;
 };
 
-const DragHandle = ({ ratio }: DragHandleProps) => {
+const DragHandle = ({ aspectRatio }: DragHandleProps) => {
   return (
     <LinearGradient
       colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
       style={styles.dragHandle}
     >
-      <Text style={styles.ratioDecimalLabel}>{ratio}</Text>
+      <Text style={styles.aspectRatioLabel}>{aspectRatio}</Text>
     </LinearGradient>
   );
 };
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  ratioDecimalLabel: {
+  aspectRatioLabel: {
     color: "white",
   },
 });
 
 const mapStateToProps = (state: RootState) => ({
-  ratio: state.slice.ratio,
+  aspectRatio: state.param.aspectRatio,
 });
 
 export default connect(mapStateToProps)(DragHandle);

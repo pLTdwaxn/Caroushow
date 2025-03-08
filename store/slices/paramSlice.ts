@@ -2,20 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   offsetY: 0,
-  ratio: 1,
+  aspectRatio: 1,
   slices: 3,
 };
 
-const sliceSlice = createSlice({
+const paramSlice = createSlice({
   name: "slice",
   initialState,
   reducers: {
     setOffsetY: (state, action: PayloadAction<number>) => {
-      // console.log("setOffsetY", action.payload);
       state.offsetY = action.payload;
     },
-    setRatio: (state, action: PayloadAction<number>) => {
-      state.ratio = action.payload;
+    setAspectRatio: (state, action: PayloadAction<number>) => {
+      state.aspectRatio = action.payload;
     },
     setSlices: (state, action: PayloadAction<number>) => {
       state.slices = action.payload;
@@ -23,5 +22,5 @@ const sliceSlice = createSlice({
   },
 });
 
-export const { setOffsetY, setRatio, setSlices } = sliceSlice.actions;
-export default sliceSlice.reducer;
+export const { setOffsetY, setAspectRatio, setSlices } = paramSlice.actions;
+export default paramSlice.reducer;

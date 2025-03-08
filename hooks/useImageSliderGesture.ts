@@ -9,7 +9,7 @@ import {
 } from "react-native-reanimated";
 
 import { useDispatch } from "react-redux";
-import { setOffsetY } from "@/store/slices/sliceSlice";
+import { setOffsetY } from "@/store/slices/paramSlice";
 
 const useImageSliderGesture = (offsetY: number) => {
   const dispatch = useDispatch();

@@ -14,17 +14,18 @@ const screenWidth = Dimensions.get("window").width;
 type ImageSliderProps = {
   image: ImageState;
   offsetY: number;
+  slices: number;
 };
 
-const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
+const ImageSlider = ({ image, offsetY, slices }: ImageSliderProps) => {
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
   const { pan, updatedOffsetY } = usePanGesture(offsetY);
 
   const imageContainerDimensions = {
-    width: screenWidth * 3,
-    height: (screenWidth * 3 * imageHeight) / imageWidth,
+    width: screenWidth * slices,
+    height: (screenWidth * slices * imageHeight) / imageWidth,
   };
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: any) => {
   return {
     image: state.image,
-    offsetY: state.slice.offsetY,
+    offsetY: state.param.offsetY,
+    slices: state.param.slices,
   };
 };
 

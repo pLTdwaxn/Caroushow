@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved Image Slider's gesture handling into a hook
 - Cleaned up the logic behind Crop Overlay component
 - Cleaned up the logic behind Image Slider component
+- Renamed many variables internally
+- Made image slicing taking y-offset into account
 
 ### Removed
 
