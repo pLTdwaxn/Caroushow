@@ -10,7 +10,6 @@ import { GestureDetector } from "react-native-gesture-handler";
 import usePanGesture from "@/hooks/useImageSliderGesture";
 
 const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
 
 type ImageSliderProps = {
   image: ImageState;
@@ -21,17 +20,15 @@ const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
-  const { pan, offsetDelta } = usePanGesture(offsetY);
+  const { pan, updatedOffsetY } = usePanGesture(offsetY);
 
   const imageContainerDimensions = {
     width: screenWidth * 3,
-    height: imageWidth
-      ? (screenWidth * 3 * imageHeight) / imageWidth
-      : screenHeight,
+    height: (screenWidth * 3 * imageHeight) / imageWidth,
   };
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: offsetY + offsetDelta.value }],
+    transform: [{ translateY: updatedOffsetY.value }],
   }));
 
   return (
@@ -59,13 +56,8 @@ const ImageSlider = ({ image, offsetY }: ImageSliderProps) => {
 };
 
 const styles = StyleSheet.create({
-  imageSlider: {
-    flex: 1,
-    justifyContent: "flex-start",
-  },
-  imageContainer: {
-    justifyContent: "flex-start",
-  },
+  imageSlider: {},
+  imageContainer: {},
   image: {
     width: "100%",
     height: "100%",

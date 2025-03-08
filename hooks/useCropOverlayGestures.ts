@@ -6,7 +6,6 @@ import {
 } from "react-native-reanimated";
 
 import { useDispatch } from "react-redux";
-
 import { setRatio } from "@/store/slices/sliceSlice";
 
 export const useCropOverlayGestures = (

@@ -11,6 +11,7 @@ const sliceSlice = createSlice({
   initialState,
   reducers: {
     setOffsetY: (state, action: PayloadAction<number>) => {
+      // console.log("setOffsetY", action.payload);
       state.offsetY = action.payload;
     },
     setRatio: (state, action: PayloadAction<number>) => {
