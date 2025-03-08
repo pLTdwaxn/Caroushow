@@ -1,11 +1,7 @@
-import { useEffect } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 import CropOverlay from "@/components/cropOverlay/CropOverlay";
 import { ImageState } from "@/types";

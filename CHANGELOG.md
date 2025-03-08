@@ -45,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactored the project's folder structure
 - Changed Image Slider from using FlatList to ScrollView for gesture compatibility
 - Moved Image Slider's gesture handling into a hook
+- Cleaned up the logic behind Crop Overlay component
 
 ### Removed
 

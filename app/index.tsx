@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { StatusBar } from "expo-status-bar";
@@ -11,12 +11,21 @@ import BottomActionsBar from "@/components/BottomActionsBar";
 import ImageSlider from "@/components/ImageSlider";
 
 import { ImageState } from "@/types";
+import store from "@/store";
+import { setDevice } from "@/store/slices/deviceSlice";
 
-type CreateTabProps = {
+const deviceDimensions = {
+  width: Dimensions.get("window").width,
+  height: Dimensions.get("window").height,
+};
+
+store.dispatch(setDevice(deviceDimensions));
+
+type IndexPageProps = {
   image: ImageState;
 };
 
-const create = ({ image }: CreateTabProps) => {
+const index = ({ image }: IndexPageProps) => {
   const ImageArea = () => {
     if (image.asset !== null) {
       return <ImageSlider />;
@@ -48,4 +57,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(create);
+export default connect(mapStateToProps)(index);

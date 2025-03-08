@@ -1,29 +1,27 @@
 import React from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { ReText } from "react-native-redash";
-import { DerivedValue } from "react-native-reanimated";
-
-const screenWidth = Dimensions.get("window").width;
+import { RootState } from "@/types";
+import { connect } from "react-redux";
 
 type DragHandleProps = {
-  realTimeRatio: DerivedValue<string>;
+  ratio: number;
 };
 
-const DragHandle = ({ realTimeRatio }: DragHandleProps) => {
+const DragHandle = ({ ratio }: DragHandleProps) => {
   return (
     <LinearGradient
       colors={["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]}
       style={styles.dragHandle}
     >
-      <ReText style={styles.ratioDecimalLabel} text={realTimeRatio} />
+      <Text style={styles.ratioDecimalLabel}>{ratio}</Text>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   dragHandle: {
-    width: screenWidth,
+    width: "100%",
     height: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -33,4 +31,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DragHandle;
+const mapStateToProps = (state: RootState) => ({
+  ratio: state.slice.ratio,
+});
+
+export default connect(mapStateToProps)(DragHandle);

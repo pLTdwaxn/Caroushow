@@ -5,8 +5,6 @@ import * as MediaLibrary from "expo-media-library";
 import store from "@/store";
 import { setImage } from "@/store/slices/imageSlice";
 
-import aspectRatioList from "../fixtures/aspectRatioLists";
-
 export const pickImageAsync = async () => {
   try {
     const result = await ImagePicker.launchImageLibraryAsync({ quality: 1 });
@@ -19,22 +17,13 @@ export const pickImageAsync = async () => {
   }
 };
 
-export const cycleAspectRatio = (currentRatio: number) => {
-  console.log("currentRatio", currentRatio);
-  const currentIndex = aspectRatioList.findIndex(
-    (ratio) => ratio.decimal >= currentRatio
-  );
-  const nextIndex = (currentIndex + 1) % aspectRatioList.length;
-  return aspectRatioList[nextIndex];
-};
-
 export const sliceImage = () => {
   const { uri, width } = store.getState().image.asset;
   const { offsetY, ratio } = store.getState().slice;
   const columns = store.getState().slice.slices;
 
   const columnWidth = Math.floor(width / columns);
-  const calculatedHeight = Math.floor(columnWidth * ratio.decimal);
+  const calculatedHeight = Math.floor(columnWidth * ratio);
 
   const actions = Array.from({ length: columns }, (_, i) => ({
     crop: {
