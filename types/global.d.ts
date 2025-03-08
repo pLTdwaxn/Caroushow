@@ -16,9 +16,16 @@ declare module "@/types" {
     slices: number;
   }
 
+  export interface socialMediaState {
+    name: string;
+    minRatio: number;
+    maxRatio: number;
+  }
+
   export interface RootState {
     device: DeviceState;
     image: ImageState;
     param: ParamState;
+    socialMedia: socialMediaState;
   }
 }
