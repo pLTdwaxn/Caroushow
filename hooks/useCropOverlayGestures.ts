@@ -6,7 +6,7 @@ import {
 } from "react-native-reanimated";
 
 import { useDispatch } from "react-redux";
-import { setRatio } from "@/store/slices/sliceSlice";
+import { setAspectRatio } from "@/store/slices/paramSlice";
 
 export const useCropOverlayGestures = (
   screenWidth: number,
@@ -21,14 +21,14 @@ export const useCropOverlayGestures = (
   );
   const updatedRatio = useDerivedValue(() => updatedHeight.value / screenWidth);
 
-  const dispatchNewRatio = (newRatio: number) => {
-    dispatch(setRatio(Number(newRatio.toFixed(3))));
+  const dispatchAspectRatio = (AspectRatio: number) => {
+    dispatch(setAspectRatio(Number(AspectRatio.toFixed(3))));
   };
 
   const pan = Gesture.Pan()
     .onUpdate((e) => {
       deltaY.value = e.translationY;
-      runOnJS(dispatchNewRatio)(updatedRatio.value);
+      runOnJS(dispatchAspectRatio)(updatedRatio.value);
     })
     .onEnd(() => {
       originalHeight.value = updatedHeight.value;

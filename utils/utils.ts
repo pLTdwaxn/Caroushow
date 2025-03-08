@@ -19,17 +19,20 @@ export const pickImageAsync = async () => {
 
 export const sliceImage = () => {
   const { uri, width } = store.getState().image.asset;
-  const { offsetY, ratio } = store.getState().slice;
-  const columns = store.getState().slice.slices;
+  const { offsetY, aspectRatio, slices } = store.getState().param;
+  const { screenWidth } = store.getState().device;
 
-  const columnWidth = Math.floor(width / columns);
-  const calculatedHeight = Math.floor(columnWidth * ratio);
+  const sliceWidth = Math.floor(width / slices);
+  const correctedOffsetY = Math.floor(
+    offsetY * (width / (screenWidth * slices))
+  );
+  const calculatedHeight = Math.floor(sliceWidth * aspectRatio);
 
-  const actions = Array.from({ length: columns }, (_, i) => ({
+  const actions = Array.from({ length: slices }, (_, i) => ({
     crop: {
-      originX: i * columnWidth,
-      originY: 0,
-      width: columnWidth,
+      originX: i * sliceWidth,
+      originY: -correctedOffsetY,
+      width: sliceWidth,
       height: calculatedHeight,
     },
   }));
