@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
+import { BlurView } from "expo-blur";
+
 import { RootState } from "@/types";
 import { useCropOverlayGestures } from "@/hooks/useCropOverlayGestures";
 import DragHandle from "./DragHandle";
@@ -34,7 +36,7 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
         <DragHandle />
       </GestureDetector>
 
-      <View style={styles.bottomOverlay} pointerEvents="none"></View>
+      <BlurView style={styles.bottomOverlay} pointerEvents="none"></BlurView>
     </View>
   );
 };
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
   bottomOverlay: {
     flex: 1,
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
   },
 });
 

@@ -50,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed many variables internally
 - Made image slicing taking y-offset into account
 - Made drag handle limited to an aspect ratio range given by the selected social media
+- Removed header and separated top actions bar from image slider
 
 ### Removed
 

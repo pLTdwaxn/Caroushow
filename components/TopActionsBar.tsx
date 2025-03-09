@@ -1,32 +1,28 @@
 import { View, StyleSheet } from "react-native";
 import SocialMediaSelect from "./SocialMediaSelect";
 
+import { BlurView } from "expo-blur";
+
 const TopActionsBar = () => {
   return (
-    <View style={styles.topActionsBarContainer}>
+    <BlurView style={styles.topActionsBarContainer}>
       <View style={styles.iconsRow}>
         <SocialMediaSelect />
       </View>
-    </View>
+    </BlurView>
   );
 };
 
 const styles = StyleSheet.create({
   topActionsBarContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: 0,
-    backgroundColor: "transparent",
-    zIndex: 1,
-    paddingTop: 12,
+    justifyContent: "flex-end",
+    width: "100%",
+    height: 120,
+    padding: 8,
   },
   iconsRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     width: "100%",
-    paddingHorizontal: 12,
   },
 });
 

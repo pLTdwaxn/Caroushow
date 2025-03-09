@@ -85,9 +85,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   socialMediaIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -96,10 +96,10 @@ const styles = StyleSheet.create({
   },
   boldText: {
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
   whiteText: {
-    color: "white",
+    color: "black",
   },
   dropdown: {
     position: "absolute",
