@@ -26,18 +26,16 @@ type IndexPageProps = {
 };
 
 const index = ({ image }: IndexPageProps) => {
-  const ImageArea = () => {
-    if (image.asset !== null) {
-      return <ImageSlider />;
-    }
-    return <ImageSelectButton />;
-  };
-
   return (
     <>
       <GestureHandlerRootView style={styles.container}>
-        {image.asset !== null && <TopActionsBar />}
-        <ImageArea />
+        {image.asset !== null && (
+          <>
+            <TopActionsBar />
+            <ImageSlider />
+          </>
+        )}
+        {image.asset === null && <ImageSelectButton />}
         <BottomActionsBar />
         <StatusBar style="dark" />
       </GestureHandlerRootView>

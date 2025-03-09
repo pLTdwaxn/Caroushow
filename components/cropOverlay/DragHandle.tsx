@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+
+import { BlurView } from "expo-blur";
+
 import { RootState, socialMediaState } from "@/types";
 import { connect } from "react-redux";
 
@@ -10,20 +12,15 @@ type DragHandleProps = {
 };
 
 const DragHandle = ({ aspectRatio, socialMedia }: DragHandleProps) => {
-  const colors = () => {
-    if (
-      aspectRatio < socialMedia.minRatio ||
-      aspectRatio > socialMedia.maxRatio
-    ) {
-      return ["rgba(255, 140, 140, 0.2)", "rgba(255, 140, 140, 0.5)"] as const;
-    }
-    return ["rgba(140, 255, 140, 0.2)", "rgba(140, 255, 140, 0.5)"] as const;
-  };
+  const colors = () =>
+    aspectRatio < socialMedia.minRatio || aspectRatio > socialMedia.maxRatio
+      ? { backgroundColor: "rgba(255, 140, 140, 0.25)" }
+      : { backgroundColor: "rgba(140, 255, 140, 0.25)" };
 
   return (
-    <LinearGradient colors={colors()} style={styles.dragHandle}>
+    <BlurView style={[styles.dragHandle, colors()]} collapsable={false}>
       <Text style={styles.aspectRatioLabel}>{aspectRatio.toFixed(3)}</Text>
-    </LinearGradient>
+    </BlurView>
   );
 };
 
