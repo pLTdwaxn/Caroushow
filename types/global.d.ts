@@ -1,5 +1,5 @@
-declare module "@/types" {
-  export { ImagePickerAsset, ImagePickerOptions } from "expo-image-picker";
+declare module '@/types' {
+  export { ImagePickerAsset, ImagePickerOptions } from 'expo-image-picker';
 
   export interface DeviceState {
     screenWidth: number;

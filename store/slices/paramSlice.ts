@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   offsetY: 0,
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const paramSlice = createSlice({
-  name: "slice",
+  name: 'slice',
   initialState,
   reducers: {
     setOffsetY: (state, action: PayloadAction<number>) => {

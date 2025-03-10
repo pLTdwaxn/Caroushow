@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DeviceState } from "@/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DeviceState } from '@/types';
 
 const initialState: DeviceState = {
   screenWidth: 0,
@@ -7,7 +7,7 @@ const initialState: DeviceState = {
 };
 
 const deviceSlice = createSlice({
-  name: "device",
+  name: 'device',
   initialState,
   reducers: {
     setDevice: (state, action: PayloadAction<DeviceState>) => {

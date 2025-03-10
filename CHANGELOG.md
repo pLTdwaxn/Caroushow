@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to vertically pan the image (not affecting slicing yet)
 - Auto bounce back when image panning is outside a nonsense range
 - Tap gesture placeholder in Image Slider
+- Prettier package and its config
 
 ### Changed
 
@@ -52,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made image slicing taking y-offset into account
 - Made drag handle limited to an aspect ratio range given by the selected social media
 - Removed header and separated top actions bar from image slider
+- Formatted the project with prettier
 
 ### Removed
 

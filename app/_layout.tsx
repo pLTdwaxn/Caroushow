@@ -1,8 +1,8 @@
-import { Provider } from "react-redux";
-import store from "@/store";
+import { Provider } from 'react-redux';
+import store from '@/store';
 
-import { Stack } from "expo-router";
-import TopActionsBar from "@/components/TopActionsBar";
+import { Stack } from 'expo-router';
+import TopActionsBar from '@/components/TopActionsBar';
 
 const RootLayout = () => {
   return (

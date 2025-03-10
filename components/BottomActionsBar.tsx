@@ -1,9 +1,9 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet } from 'react-native';
 
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-import IconButton from "@/components/shared/IconButton";
-import { pickImageAsync, sliceImage } from "@/utils/utils";
+import IconButton from '@/components/shared/IconButton';
+import { pickImageAsync, sliceImage } from '@/utils/utils';
 
 const BottomActionsBar = () => {
   const ShareIcon = <Ionicons name="share-outline" size={24} />;
@@ -27,15 +27,15 @@ const BottomActionsBar = () => {
 
 const styles = StyleSheet.create({
   actionsBar: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    width: "100%",
+    width: '100%',
     height: 72,
   },
   iconsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

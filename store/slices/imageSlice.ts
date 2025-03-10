@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ImageState, ImagePickerAsset } from "@/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ImageState, ImagePickerAsset } from '@/types';
 
 const initialState: ImageState = {
   asset: null,
 };
 
 const imageSlice = createSlice({
-  name: "image",
+  name: 'image',
   initialState,
   reducers: {
     setImage: (state, action: PayloadAction<ImagePickerAsset>) => {
