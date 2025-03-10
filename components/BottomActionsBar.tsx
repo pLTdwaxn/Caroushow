@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import IconButton from '@/components/shared/IconButton';
 import { pickImageAsync, sliceImage } from '@/utils/utils';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const BottomActionsBar = () => {
   const ShareIcon = <Ionicons name="share-outline" size={24} />;
@@ -14,8 +15,15 @@ const BottomActionsBar = () => {
     sliceImage();
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.actionsBar} testID="actions-bar">
+    <View
+      style={[
+        styles.BottomActionsBarContainer,
+        { paddingBottom: insets.bottom },
+      ]}
+    >
       <View style={styles.iconsRow}>
         <IconButton icon={moreIcon} onPress={() => {}} />
         <IconButton icon={AddIcon} onPress={pickImageAsync} />
@@ -26,11 +34,10 @@ const BottomActionsBar = () => {
 };
 
 const styles = StyleSheet.create({
-  actionsBar: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: 72,
+  BottomActionsBarContainer: {
+    zIndex: 1,
+    paddingTop: 20,
+    backgroundColor: 'white',
   },
   iconsRow: {
     flexDirection: 'row',

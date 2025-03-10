@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import IconButton from '@/components/shared/IconButton';
 
-import socialMediaList from '../fixtures/socialMediaList';
+import socialMediaList from '../../fixtures/socialMediaList';
 
 const SocialMediaSelect = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);

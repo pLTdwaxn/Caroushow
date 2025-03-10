@@ -1,4 +1,4 @@
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { GestureDetector } from 'react-native-gesture-handler';
@@ -9,7 +9,6 @@ import { BlurView } from 'expo-blur';
 import { RootState } from '@/types';
 import { useCropOverlayGestures } from '@/hooks/useCropOverlayGestures';
 import DragHandle from './DragHandle';
-import { cycleSlices } from '@/utils/utils';
 
 type CropOverlayProps = {
   screenWidth: number;
@@ -37,31 +36,32 @@ const CropOverlay = ({
         style={[styles.cropArea, animatedStyle]}
         pointerEvents="none"
       />
-      <Button title={slices.toString()} onPress={cycleSlices} />
 
       <GestureDetector gesture={composedGesture}>
         <DragHandle />
       </GestureDetector>
 
-      <BlurView style={styles.bottomOverlay} pointerEvents="none" />
+      <BlurView
+        style={styles.bottomOverlay}
+        tint="extraLight"
+        intensity={80}
+        pointerEvents="none"
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   overlayContainer: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
   },
-  cropArea: {
-    width: '100%',
-  },
+  cropArea: {},
   bottomOverlay: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
 });
 

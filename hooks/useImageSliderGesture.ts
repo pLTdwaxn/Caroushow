@@ -11,20 +11,21 @@ import {
 import { useDispatch } from 'react-redux';
 import { setOffsetY } from '@/store/slices/paramSlice';
 
-const useImageSliderGesture = (offsetY: number) => {
+const useImageSliderGesture = (offsetY: number, cropStartHeight: number) => {
   const dispatch = useDispatch();
 
-  const originalOffsetY = useSharedValue(offsetY);
+  const originalOffsetY = useSharedValue(offsetY + cropStartHeight);
   const deltaY = useSharedValue(0);
   const updatedOffsetY = useDerivedValue(
     () => originalOffsetY.value + deltaY.value
   );
 
+  const LOWER_BOUND = cropStartHeight;
+  const UPPER_BOUND = -300;
+
   const dispatchOffsetY = (newOffsetY: number) => {
     dispatch(setOffsetY(newOffsetY));
   };
-
-  const UPPER_BOUND = -300;
 
   const animationConfig = {
     duration: 300,
@@ -40,10 +41,9 @@ const useImageSliderGesture = (offsetY: number) => {
     .onEnd(() => {
       originalOffsetY.value = updatedOffsetY.value;
       deltaY.value = 0;
-
-      if (originalOffsetY.value > 0) {
-        originalOffsetY.value = withTiming(0, animationConfig, () => {
-          runOnJS(dispatchOffsetY)(0);
+      if (originalOffsetY.value > LOWER_BOUND) {
+        originalOffsetY.value = withTiming(LOWER_BOUND, animationConfig, () => {
+          runOnJS(dispatchOffsetY)(LOWER_BOUND);
         });
       } else if (originalOffsetY.value < UPPER_BOUND) {
         originalOffsetY.value = withTiming(UPPER_BOUND, animationConfig, () => {
@@ -52,9 +52,7 @@ const useImageSliderGesture = (offsetY: number) => {
       }
     });
 
-  const tap = Gesture.Tap().onBegin(() => {
-    console.log('Tap gesture started');
-  });
+  const tap = Gesture.Tap().onBegin(() => {});
 
   const composedGesture = Gesture.Race(pan, tap);
 
