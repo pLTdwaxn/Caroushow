@@ -52,7 +52,13 @@ const useImageSliderGesture = (offsetY: number) => {
       }
     });
 
-  return { pan, updatedOffsetY };
+  const tap = Gesture.Tap().onBegin(() => {
+    console.log("Tap gesture started");
+  });
+
+  const composedGesture = Gesture.Race(pan, tap);
+
+  return { composedGesture, updatedOffsetY };
 };
 
 export default useImageSliderGesture;
