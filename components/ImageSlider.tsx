@@ -4,7 +4,7 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { connect } from 'react-redux';
 
 import CropOverlay from '@/components/cropOverlay/CropOverlay';
-import { ImageState } from '@/types';
+import { ImageState, RootState } from '@/types';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import usePanGesture from '@/hooks/useImageSliderGesture';
@@ -40,6 +40,7 @@ const ImageSlider = ({ image, offsetY, slices }: ImageSliderProps) => {
             horizontal
             snapToInterval={screenWidth}
             decelerationRate="fast"
+            showsHorizontalScrollIndicator={false}
           >
             <View style={[imageContainerDimensions, styles.imageContainer]}>
               <Animated.Image
@@ -65,12 +66,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state: any) => {
-  return {
-    image: state.image,
-    offsetY: state.param.offsetY,
-    slices: state.param.slices,
-  };
-};
+const mapStateToProps = (state: RootState) => ({
+  image: state.image,
+  offsetY: state.param.offsetY,
+  slices: state.param.slices,
+});
 
 export default connect(mapStateToProps)(ImageSlider);

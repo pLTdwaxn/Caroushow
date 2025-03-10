@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Auto bounce back when image panning is outside a nonsense range
 - Tap gesture placeholder in Image Slider
 - Prettier package and its config
+- A button to cycle the slices the image will be cut into
 
 ### Changed
 

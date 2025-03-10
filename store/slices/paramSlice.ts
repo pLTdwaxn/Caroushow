@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const paramSlice = createSlice({
-  name: 'slice',
+  name: 'param',
   initialState,
   reducers: {
     setOffsetY: (state, action: PayloadAction<number>) => {
