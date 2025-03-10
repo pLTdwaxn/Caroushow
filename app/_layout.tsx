@@ -1,12 +1,14 @@
 import { Provider } from 'react-redux';
 import store from '@/store';
 
+import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
-import TopActionsBar from '@/components/TopActionsBar';
 
 const RootLayout = () => {
   return (
     <Provider store={store}>
+      <StatusBar style="dark" />
+
       <Stack>
         <Stack.Screen
           name="index"

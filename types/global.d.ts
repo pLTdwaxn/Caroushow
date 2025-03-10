@@ -4,6 +4,7 @@ declare module '@/types' {
   export interface DeviceState {
     screenWidth: number;
     screenHeight: number;
+    topActionsBarHeight: number;
   }
 
   export interface ImageState {

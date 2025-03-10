@@ -55,6 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made drag handle limited to an aspect ratio range given by the selected social media
 - Removed header and separated top actions bar from image slider
 - Formatted the project with prettier
+- Major Structural rework
+- The top section of the screen now has blurry effect if the image is panned under it
 
 ### Removed
 
