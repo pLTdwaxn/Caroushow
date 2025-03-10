@@ -4,6 +4,7 @@ import * as MediaLibrary from 'expo-media-library';
 
 import store from '@/store';
 import { setImage } from '@/store/slices/imageSlice';
+import { setSlices } from '@/store/slices/paramSlice';
 
 export const pickImageAsync = async () => {
   try {
@@ -15,6 +16,12 @@ export const pickImageAsync = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const cycleSlices = () => {
+  const { slices } = store.getState().param;
+  const newSlices = slices >= 10 ? 2 : slices + 1;
+  store.dispatch(setSlices(newSlices));
 };
 
 export const sliceImage = () => {

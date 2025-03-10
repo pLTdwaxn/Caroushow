@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import { GestureDetector } from 'react-native-gesture-handler';
@@ -9,13 +9,19 @@ import { BlurView } from 'expo-blur';
 import { RootState } from '@/types';
 import { useCropOverlayGestures } from '@/hooks/useCropOverlayGestures';
 import DragHandle from './DragHandle';
+import { cycleSlices } from '@/utils/utils';
 
 type CropOverlayProps = {
   screenWidth: number;
   aspectRatio: number;
+  slices: number;
 };
 
-const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
+const CropOverlay = ({
+  screenWidth,
+  aspectRatio,
+  slices,
+}: CropOverlayProps) => {
   const { composedGesture, updatedHeight } = useCropOverlayGestures(
     screenWidth,
     aspectRatio
@@ -31,6 +37,7 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
         style={[styles.cropArea, animatedStyle]}
         pointerEvents="none"
       />
+      <Button title={slices.toString()} onPress={cycleSlices} />
 
       <GestureDetector gesture={composedGesture}>
         <DragHandle />
@@ -61,6 +68,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: RootState) => ({
   screenWidth: state.device.screenWidth,
   aspectRatio: state.param.aspectRatio,
+  slices: state.param.slices,
 });
 
 export default connect(mapStateToProps)(CropOverlay);
