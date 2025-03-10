@@ -1,11 +1,11 @@
-import { SetStateAction, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { SetStateAction, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 
-import IconButton from "@/components/shared/IconButton";
+import IconButton from '@/components/shared/IconButton';
 
-import socialMediaList from "../fixtures/socialMediaList";
+import socialMediaList from '../fixtures/socialMediaList';
 
 const SocialMediaSelect = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -81,47 +81,47 @@ const SocialMediaSelect = () => {
 
 const styles = StyleSheet.create({
   socialMediaSelection: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   socialMediaIcon: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textLabel: {
     marginLeft: 12,
   },
   boldText: {
-    fontWeight: "bold",
-    color: "black",
+    fontWeight: 'bold',
+    color: 'black',
   },
   whiteText: {
-    color: "black",
+    color: 'black',
   },
   dropdown: {
-    position: "absolute",
+    position: 'absolute',
     top: 60,
     left: 0,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
     zIndex: 1,
   },
   dropdownItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
   },
   dropdownText: {
     marginLeft: 10,
-    color: "black",
+    color: 'black',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     zIndex: 1,
   },
 });

@@ -1,14 +1,14 @@
-import { View, StyleSheet } from "react-native";
-import { connect } from "react-redux";
+import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
-import { GestureDetector } from "react-native-gesture-handler";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import { GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-import { BlurView } from "expo-blur";
+import { BlurView } from 'expo-blur';
 
-import { RootState } from "@/types";
-import { useCropOverlayGestures } from "@/hooks/useCropOverlayGestures";
-import DragHandle from "./DragHandle";
+import { RootState } from '@/types';
+import { useCropOverlayGestures } from '@/hooks/useCropOverlayGestures';
+import DragHandle from './DragHandle';
 
 type CropOverlayProps = {
   screenWidth: number;
@@ -36,7 +36,7 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
         <DragHandle />
       </GestureDetector>
 
-      <BlurView style={styles.bottomOverlay} pointerEvents="none"></BlurView>
+      <BlurView style={styles.bottomOverlay} pointerEvents="none" />
     </View>
   );
 };
@@ -44,17 +44,17 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
 const styles = StyleSheet.create({
   overlayContainer: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexDirection: "column",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   cropArea: {
-    width: "100%",
+    width: '100%',
   },
   bottomOverlay: {
     flex: 1,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
 });
 

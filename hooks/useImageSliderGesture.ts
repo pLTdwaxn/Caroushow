@@ -1,4 +1,4 @@
-import { Gesture } from "react-native-gesture-handler";
+import { Gesture } from 'react-native-gesture-handler';
 import {
   Easing,
   ReduceMotion,
@@ -6,10 +6,10 @@ import {
   useDerivedValue,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import { useDispatch } from "react-redux";
-import { setOffsetY } from "@/store/slices/paramSlice";
+import { useDispatch } from 'react-redux';
+import { setOffsetY } from '@/store/slices/paramSlice';
 
 const useImageSliderGesture = (offsetY: number) => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const useImageSliderGesture = (offsetY: number) => {
     });
 
   const tap = Gesture.Tap().onBegin(() => {
-    console.log("Tap gesture started");
+    console.log('Tap gesture started');
   });
 
   const composedGesture = Gesture.Race(pan, tap);

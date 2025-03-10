@@ -1,6 +1,6 @@
-import { socialMediaState } from "@/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import socialMediaList from "@/fixtures/socialMediaList";
+import { socialMediaState } from '@/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import socialMediaList from '@/fixtures/socialMediaList';
 
 const initialState: socialMediaState = {
   name: socialMediaList[0].name,
@@ -9,7 +9,7 @@ const initialState: socialMediaState = {
 };
 
 const socialMediaSlice = createSlice({
-  name: "socialMedia",
+  name: 'socialMedia',
   initialState,
   reducers: {
     setSocialMedia: (state, action: PayloadAction<socialMediaState>) => {

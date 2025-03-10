@@ -1,10 +1,10 @@
-import React from "react";
-import { Text, StyleSheet } from "react-native";
+import React from 'react';
+import { Text, StyleSheet } from 'react-native';
 
-import { BlurView } from "expo-blur";
+import { BlurView } from 'expo-blur';
 
-import { RootState, socialMediaState } from "@/types";
-import { connect } from "react-redux";
+import { RootState, socialMediaState } from '@/types';
+import { connect } from 'react-redux';
 
 type DragHandleProps = {
   aspectRatio: number;
@@ -14,8 +14,8 @@ type DragHandleProps = {
 const DragHandle = ({ aspectRatio, socialMedia }: DragHandleProps) => {
   const colors = () =>
     aspectRatio < socialMedia.minRatio || aspectRatio > socialMedia.maxRatio
-      ? { backgroundColor: "rgba(255, 140, 140, 0.25)" }
-      : { backgroundColor: "rgba(140, 255, 140, 0.25)" };
+      ? { backgroundColor: 'rgba(255, 140, 140, 0.25)' }
+      : { backgroundColor: 'rgba(140, 255, 140, 0.25)' };
 
   return (
     <BlurView style={[styles.dragHandle, colors()]} collapsable={false}>
@@ -26,13 +26,13 @@ const DragHandle = ({ aspectRatio, socialMedia }: DragHandleProps) => {
 
 const styles = StyleSheet.create({
   dragHandle: {
-    width: "100%",
+    width: '100%',
     height: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   aspectRatioLabel: {
-    color: "white",
+    color: 'white',
   },
 });
 

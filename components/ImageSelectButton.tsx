@@ -1,5 +1,5 @@
-import { pickImageAsync } from "../utils/utils";
-import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import { pickImageAsync } from '../utils/utils';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 const ImageSelectButton = () => {
   return (
@@ -14,15 +14,15 @@ const ImageSelectButton = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#007BFF",
+    color: '#007BFF',
     fontSize: 16,
   },
 });

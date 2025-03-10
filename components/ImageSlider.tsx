@@ -1,15 +1,15 @@
-import { View, StyleSheet, Dimensions } from "react-native";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import { View, StyleSheet, Dimensions } from 'react-native';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import CropOverlay from "@/components/cropOverlay/CropOverlay";
-import { ImageState } from "@/types";
-import { GestureDetector } from "react-native-gesture-handler";
+import CropOverlay from '@/components/cropOverlay/CropOverlay';
+import { ImageState } from '@/types';
+import { GestureDetector } from 'react-native-gesture-handler';
 
-import usePanGesture from "@/hooks/useImageSliderGesture";
+import usePanGesture from '@/hooks/useImageSliderGesture';
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get('window').width;
 
 type ImageSliderProps = {
   image: ImageState;
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   imageSlider: {},
   imageContainer: {},
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
 });
 

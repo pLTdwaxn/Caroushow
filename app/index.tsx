@@ -1,22 +1,22 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { Dimensions, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Dimensions, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from 'expo-status-bar';
 
-import ImageSelectButton from "@/components/ImageSelectButton";
-import TopActionsBar from "@/components/TopActionsBar";
-import BottomActionsBar from "@/components/BottomActionsBar";
-import ImageSlider from "@/components/ImageSlider";
+import ImageSelectButton from '@/components/ImageSelectButton';
+import TopActionsBar from '@/components/TopActionsBar';
+import BottomActionsBar from '@/components/BottomActionsBar';
+import ImageSlider from '@/components/ImageSlider';
 
-import { ImageState } from "@/types";
-import store from "@/store";
-import { setDevice } from "@/store/slices/deviceSlice";
+import { ImageState } from '@/types';
+import store from '@/store';
+import { setDevice } from '@/store/slices/deviceSlice';
 
 const deviceDimensions = {
-  screenWidth: Dimensions.get("window").width,
-  screenHeight: Dimensions.get("window").height,
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height,
 };
 
 store.dispatch(setDevice(deviceDimensions));

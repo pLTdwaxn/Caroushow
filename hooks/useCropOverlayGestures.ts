@@ -1,4 +1,4 @@
-import { Gesture } from "react-native-gesture-handler";
+import { Gesture } from 'react-native-gesture-handler';
 import {
   Easing,
   ReduceMotion,
@@ -6,11 +6,11 @@ import {
   useDerivedValue,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import { useDispatch } from "react-redux";
-import { setAspectRatio } from "@/store/slices/paramSlice";
-import store from "@/store";
+import { useDispatch } from 'react-redux';
+import { setAspectRatio } from '@/store/slices/paramSlice';
+import store from '@/store';
 
 export const useCropOverlayGestures = (
   screenWidth: number,
@@ -67,7 +67,7 @@ export const useCropOverlayGestures = (
     });
 
   const tap = Gesture.Tap().onEnd(() => {
-    console.log("Tapped");
+    console.log('Tapped');
   });
 
   const composedGesture = Gesture.Race(pan, tap);
