@@ -21,7 +21,7 @@ const ImageSlider = ({ image, offsetY, slices }: ImageSliderProps) => {
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
-  const { pan, updatedOffsetY } = usePanGesture(offsetY);
+  const { composedGesture, updatedOffsetY } = usePanGesture(offsetY);
 
   const imageContainerDimensions = {
     width: screenWidth * slices,
@@ -35,7 +35,7 @@ const ImageSlider = ({ image, offsetY, slices }: ImageSliderProps) => {
   return (
     image.asset && (
       <View style={styles.imageSlider}>
-        <GestureDetector gesture={pan}>
+        <GestureDetector gesture={composedGesture}>
           <Animated.ScrollView
             horizontal
             snapToInterval={screenWidth}
