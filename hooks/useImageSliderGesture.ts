@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+
 import { Gesture } from 'react-native-gesture-handler';
 import {
   Easing,
@@ -8,10 +10,14 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { useDispatch } from 'react-redux';
+import store from '@/store';
 import { setOffsetY } from '@/store/slices/paramSlice';
 
-const useImageSliderGesture = (offsetY: number, cropStartHeight: number) => {
+const useImageSliderGesture = (
+  offsetY: number,
+  cropStartHeight: number,
+  imageContainerHeight: number
+) => {
   const dispatch = useDispatch();
 
   const originalOffsetY = useSharedValue(offsetY + cropStartHeight);
@@ -20,8 +26,13 @@ const useImageSliderGesture = (offsetY: number, cropStartHeight: number) => {
     () => originalOffsetY.value + deltaY.value
   );
 
-  const LOWER_BOUND = cropStartHeight;
-  const UPPER_BOUND = -300;
+  const width = store.getState().device.screenWidth;
+  const aspectRatio = store.getState().param.aspectRatio;
+  const topActionsBarHeight = store.getState().device.topActionsBarHeight;
+
+  const UPPER_BOUND = cropStartHeight;
+  const LOWER_BOUND =
+    topActionsBarHeight + width * aspectRatio - imageContainerHeight;
 
   const dispatchOffsetY = (newOffsetY: number) => {
     dispatch(setOffsetY(newOffsetY));
@@ -41,13 +52,13 @@ const useImageSliderGesture = (offsetY: number, cropStartHeight: number) => {
     .onEnd(() => {
       originalOffsetY.value = updatedOffsetY.value;
       deltaY.value = 0;
-      if (originalOffsetY.value > LOWER_BOUND) {
-        originalOffsetY.value = withTiming(LOWER_BOUND, animationConfig, () => {
-          runOnJS(dispatchOffsetY)(LOWER_BOUND);
-        });
-      } else if (originalOffsetY.value < UPPER_BOUND) {
+      if (originalOffsetY.value > UPPER_BOUND) {
         originalOffsetY.value = withTiming(UPPER_BOUND, animationConfig, () => {
           runOnJS(dispatchOffsetY)(UPPER_BOUND);
+        });
+      } else if (originalOffsetY.value < LOWER_BOUND) {
+        originalOffsetY.value = withTiming(LOWER_BOUND, animationConfig, () => {
+          runOnJS(dispatchOffsetY)(LOWER_BOUND);
         });
       }
     });
