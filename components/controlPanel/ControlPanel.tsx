@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import BottomActionsBar from '../BottomActionsBar';
-import ImageSlider from '../ImageSlider/ImageSlider';
+import ImageSlider from '../imageSlider/ImageSlider';
 import TopActionsBar from '../topActionsBar/TopActionsBar';
 import CropOverlay from '../cropOverlay/CropOverlay';
 

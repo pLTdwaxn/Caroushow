@@ -17,20 +17,25 @@ type ImageSliderProps = {
 };
 
 const ImageSlider = ({ image, param, device }: ImageSliderProps) => {
+  const { offsetY, slices } = param;
+
   const imageWidth = image.asset ? image.asset.width : 0;
   const imageHeight = image.asset ? image.asset.height : 0;
 
-  const { offsetY, slices } = param;
+  const ImageContainerWidth = screenWidth * slices;
+  const imageContainerHeight = ImageContainerWidth * (imageHeight / imageWidth);
+
   const cropStartHeight = device.topActionsBarHeight;
 
   const { composedGesture, updatedOffsetY } = usePanGesture(
     offsetY,
-    cropStartHeight
+    cropStartHeight,
+    imageContainerHeight
   );
 
   const imageContainerDimensions = {
-    width: screenWidth * slices,
-    height: (screenWidth * slices * imageHeight) / imageWidth,
+    width: ImageContainerWidth,
+    height: imageContainerHeight,
   };
 
   const animatedStyle = useAnimatedStyle(() => ({

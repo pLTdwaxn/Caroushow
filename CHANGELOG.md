@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tap gesture placeholder in Image Slider
 - Prettier package and its config
 - A button to cycle the slices the image will be cut into
+- Limit the panning of image to where the drag handle is
 
 ### Changed
 

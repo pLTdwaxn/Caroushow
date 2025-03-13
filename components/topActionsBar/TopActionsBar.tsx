@@ -1,10 +1,13 @@
-import { View, StyleSheet } from 'react-native';
-import { BlurView } from 'expo-blur';
-import SocialMediaSelect from './SocialMediaSelect';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useEffect, useRef } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { BlurView } from 'expo-blur';
+
 import store from '@/store';
 import { setTopActionsBarHeight } from '@/store/slices/deviceSlice';
+
+import SocialMediaSelect from './SocialMediaSelect';
 
 const TopActionsBar = () => {
   const insets = useSafeAreaInsets();

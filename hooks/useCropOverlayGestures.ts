@@ -66,9 +66,7 @@ export const useCropOverlayGestures = (
       }
     });
 
-  const tap = Gesture.Tap().onEnd(() => {
-    console.log('Tapped');
-  });
+  const tap = Gesture.Tap().onEnd(() => {});
 
   const composedGesture = Gesture.Race(pan, tap);
 

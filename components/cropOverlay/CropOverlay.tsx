@@ -13,14 +13,9 @@ import DragHandle from './DragHandle';
 type CropOverlayProps = {
   screenWidth: number;
   aspectRatio: number;
-  slices: number;
 };
 
-const CropOverlay = ({
-  screenWidth,
-  aspectRatio,
-  slices,
-}: CropOverlayProps) => {
+const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
   const { composedGesture, updatedHeight } = useCropOverlayGestures(
     screenWidth,
     aspectRatio
@@ -68,7 +63,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: RootState) => ({
   screenWidth: state.device.screenWidth,
   aspectRatio: state.param.aspectRatio,
-  slices: state.param.slices,
 });
 
 export default connect(mapStateToProps)(CropOverlay);
