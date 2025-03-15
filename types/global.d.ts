@@ -1,18 +1,32 @@
 declare module '@/types' {
   export { ImagePickerAsset, ImagePickerOptions } from 'expo-image-picker';
 
-  export interface DeviceState {
-    screenWidth: number;
-    screenHeight: number;
-    topActionsBarHeight: number;
+  export interface AppState {
+    screen: {
+      width: number;
+      height: number;
+    };
+    topActionsBar: {
+      height: number;
+    };
+    cropArea: {
+      width: number;
+      height: number;
+      minHeight: number;
+      maxHeight: number;
+    };
+    cropShade: {
+      y: number;
+    };
   }
 
   export interface ImageState {
     asset: ImagePickerAsset | null;
+    aspectRatio: number;
   }
 
   export interface ParamState {
-    offsetY: number;
+    y: number;
     aspectRatio: number;
     slices: number;
   }
@@ -24,7 +38,7 @@ declare module '@/types' {
   }
 
   export interface RootState {
-    device: DeviceState;
+    app: AppState;
     image: ImageState;
     param: ParamState;
     socialMedia: socialMediaState;

@@ -7,15 +7,18 @@ import ImageSelectButton from '@/components/ImageSelectButton';
 
 import { ImageState } from '@/types';
 import store from '@/store';
-import { setDevice } from '@/store/slices/deviceSlice';
 import CrontrolPanel from '@/components/controlPanel/ControlPanel';
+import { setCropArea, setScreen } from '@/store/slices/appSlice';
+import { setSocialMedia } from '@/store/slices/socialMediaSlice';
 
-const deviceDimensions = {
-  screenWidth: Dimensions.get('window').width,
-  screenHeight: Dimensions.get('window').height,
-};
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
-store.dispatch(setDevice(deviceDimensions));
+store.dispatch(setScreen({ width: width, height: height }));
+store.dispatch(setCropArea({ width: width, height: width }));
+store.dispatch(
+  setSocialMedia({ name: 'Instagram', minRatio: 0.523, maxRatio: 1.25 })
+);
 
 type IndexPageProps = {
   image: ImageState;

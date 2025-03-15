@@ -16,13 +16,10 @@ type CropOverlayProps = {
 };
 
 const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
-  const { composedGesture, updatedHeight } = useCropOverlayGestures(
-    screenWidth,
-    aspectRatio
-  );
+  const { composedGesture, endHeight } = useCropOverlayGestures();
 
   const animatedStyle = useAnimatedStyle(() => ({
-    height: updatedHeight.value,
+    height: endHeight.value,
   }));
 
   return (
@@ -37,7 +34,7 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
       </GestureDetector>
 
       <BlurView
-        style={styles.bottomOverlay}
+        style={styles.cropShade}
         tint="extraLight"
         intensity={80}
         pointerEvents="none"
@@ -54,14 +51,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   cropArea: {},
-  bottomOverlay: {
+  cropShade: {
     flex: 1,
     width: '100%',
   },
 });
 
 const mapStateToProps = (state: RootState) => ({
-  screenWidth: state.device.screenWidth,
+  screenWidth: state.app.screen.width,
   aspectRatio: state.param.aspectRatio,
 });
 

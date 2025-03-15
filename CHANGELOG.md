@@ -58,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Formatted the project with prettier
 - Major Structural rework
 - The top section of the screen now has blurry effect if the image is panned under it
+- Moved shared gesture related states into redux store and cleaned up the gesture handler logic
 
 ### Removed
 

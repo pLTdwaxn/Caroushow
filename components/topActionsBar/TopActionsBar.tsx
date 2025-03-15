@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlurView } from 'expo-blur';
 
 import store from '@/store';
-import { setTopActionsBarHeight } from '@/store/slices/deviceSlice';
+import { setTopActionsBar } from '@/store/slices/appSlice';
 
 import SocialMediaSelect from './SocialMediaSelect';
 
@@ -18,7 +18,7 @@ const TopActionsBar = () => {
   useEffect(() => {
     if (viewRef.current) {
       viewRef.current?.measure((_x, _y, _width, height) => {
-        dispatch(setTopActionsBarHeight(height));
+        dispatch(setTopActionsBar({ height: height }));
       });
     }
   }, []);

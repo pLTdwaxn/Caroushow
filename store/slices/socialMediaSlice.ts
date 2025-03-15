@@ -14,6 +14,8 @@ const socialMediaSlice = createSlice({
   reducers: {
     setSocialMedia: (state, action: PayloadAction<socialMediaState>) => {
       state.name = action.payload.name;
+      state.minRatio = action.payload.minRatio;
+      state.maxRatio = action.payload.maxRatio;
     },
   },
 });

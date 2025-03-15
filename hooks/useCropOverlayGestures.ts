@@ -9,62 +9,49 @@ import {
 } from 'react-native-reanimated';
 
 import { useDispatch } from 'react-redux';
-import { setAspectRatio } from '@/store/slices/paramSlice';
 import store from '@/store';
+import { setCropArea } from '@/store/slices/appSlice';
 
-export const useCropOverlayGestures = (
-  screenWidth: number,
-  initialRatio: number
-) => {
+export const useCropOverlayGestures = () => {
+  const state = store.getState();
+  const { width, height, minHeight, maxHeight } = state.app.cropArea;
+
   const dispatch = useDispatch();
+  const dispatchNewHeight = (newHeight: number) => {
+    dispatch(setCropArea({ width: width, height: newHeight }));
+  };
 
-  const originalHeight = useSharedValue(screenWidth * initialRatio);
+  const startHeight = useSharedValue(height);
   const deltaY = useSharedValue(0);
-  const updatedHeight = useDerivedValue(
-    () => originalHeight.value + deltaY.value
-  );
-  const updatedRatio = useDerivedValue(() => updatedHeight.value / screenWidth);
-
-  const dispatchAspectRatio = (AspectRatio: number) => {
-    dispatch(setAspectRatio(AspectRatio));
-  };
-
-  const LOWER_BOUND = store.getState().socialMedia.minRatio;
-  const UPPER_BOUND = store.getState().socialMedia.maxRatio;
-
-  const animationConfig = {
-    duration: 300,
-    easing: Easing.inOut(Easing.quad),
-    reduceMotion: ReduceMotion.System,
-  };
+  const endHeight = useDerivedValue(() => startHeight.value + deltaY.value);
 
   const pan = Gesture.Pan()
     .onUpdate((e) => {
       deltaY.value = e.translationY;
-      runOnJS(dispatchAspectRatio)(updatedRatio.value);
+      runOnJS(dispatchNewHeight)(endHeight.value);
     })
     .onEnd(() => {
-      originalHeight.value = updatedHeight.value;
+      startHeight.value = endHeight.value;
       deltaY.value = 0;
 
-      if (updatedRatio.value > UPPER_BOUND) {
-        originalHeight.value = withTiming(
-          UPPER_BOUND * screenWidth,
-          animationConfig,
-          () => {
-            runOnJS(dispatchAspectRatio)(UPPER_BOUND);
-          }
-        );
-      } else if (updatedRatio.value < LOWER_BOUND) {
-        originalHeight.value = withTiming(
-          LOWER_BOUND * screenWidth,
-          animationConfig,
-          () => {
-            runOnJS(dispatchAspectRatio)(LOWER_BOUND);
-          }
-        );
+      if (endHeight.value < minHeight) {
+        startHeight.value = withTiming(minHeight, animationConfig, () => {
+          runOnJS(dispatchNewHeight)(minHeight);
+        });
+      }
+
+      if (endHeight.value > maxHeight) {
+        startHeight.value = withTiming(maxHeight, animationConfig, () => {
+          runOnJS(dispatchNewHeight)(maxHeight);
+        });
       }
     });
+
+  const animationConfig = {
+    duration: 300,
+    easing: Easing.inOut(Easing.poly(4)),
+    reduceMotion: ReduceMotion.System,
+  };
 
   const tap = Gesture.Tap().onEnd(() => {});
 
@@ -72,6 +59,6 @@ export const useCropOverlayGestures = (
 
   return {
     composedGesture,
-    updatedHeight,
+    endHeight,
   };
 };

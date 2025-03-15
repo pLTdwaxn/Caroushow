@@ -3,35 +3,24 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import { connect } from 'react-redux';
 
-import { DeviceState, ImageState, ParamState, RootState } from '@/types';
+import { AppState, ImageState, ParamState, RootState } from '@/types';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import usePanGesture from '@/hooks/useImageSliderGesture';
 
-const screenWidth = Dimensions.get('window').width;
-
 type ImageSliderProps = {
   image: ImageState;
   param: ParamState;
-  device: DeviceState;
+  app: AppState;
 };
 
-const ImageSlider = ({ image, param, device }: ImageSliderProps) => {
-  const { offsetY, slices } = param;
-
-  const imageWidth = image.asset ? image.asset.width : 0;
-  const imageHeight = image.asset ? image.asset.height : 0;
+const ImageSlider = ({ image, param, app }: ImageSliderProps) => {
+  const { composedGesture, endY } = usePanGesture();
+  const { y, slices } = param;
+  const screenWidth = app.screen.width;
 
   const ImageContainerWidth = screenWidth * slices;
-  const imageContainerHeight = ImageContainerWidth * (imageHeight / imageWidth);
-
-  const cropStartHeight = device.topActionsBarHeight;
-
-  const { composedGesture, updatedOffsetY } = usePanGesture(
-    offsetY,
-    cropStartHeight,
-    imageContainerHeight
-  );
+  const imageContainerHeight = ImageContainerWidth * image.aspectRatio;
 
   const imageContainerDimensions = {
     width: ImageContainerWidth,
@@ -39,7 +28,7 @@ const ImageSlider = ({ image, param, device }: ImageSliderProps) => {
   };
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: updatedOffsetY.value }],
+    transform: [{ translateY: endY.value }],
   }));
 
   return (
@@ -79,7 +68,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: RootState) => ({
   image: state.image,
   param: state.param,
-  device: state.device,
+  app: state.app,
 });
 
 export default connect(mapStateToProps)(ImageSlider);
