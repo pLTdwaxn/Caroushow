@@ -1,5 +1,3 @@
-import { useDispatch } from 'react-redux';
-
 import { Gesture } from 'react-native-gesture-handler';
 import {
   Easing,
@@ -10,33 +8,50 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
+import { useDispatch } from 'react-redux';
 import store from '@/store';
-import { setOffsetY } from '@/store/slices/paramSlice';
+import { setY } from '@/store/slices/paramSlice';
 
-const useImageSliderGesture = (
-  offsetY: number,
-  cropStartHeight: number,
-  imageContainerHeight: number
-) => {
+const useImageSliderGesture = () => {
+  const state = store.getState();
+  const { y, slices } = state.param;
+  const { topActionsBar, cropArea, screen } = state.app;
+  const aspectRatio = state.image.aspectRatio;
+  const imageContainer = { height: screen.width * slices * aspectRatio };
+
   const dispatch = useDispatch();
-
-  const originalOffsetY = useSharedValue(offsetY + cropStartHeight);
-  const deltaY = useSharedValue(0);
-  const updatedOffsetY = useDerivedValue(
-    () => originalOffsetY.value + deltaY.value
-  );
-
-  const width = store.getState().device.screenWidth;
-  const aspectRatio = store.getState().param.aspectRatio;
-  const topActionsBarHeight = store.getState().device.topActionsBarHeight;
-
-  const UPPER_BOUND = cropStartHeight;
-  const LOWER_BOUND =
-    topActionsBarHeight + width * aspectRatio - imageContainerHeight;
-
-  const dispatchOffsetY = (newOffsetY: number) => {
-    dispatch(setOffsetY(newOffsetY));
+  const dispatchY = (newy: number) => {
+    dispatch(setY(newy));
   };
+
+  const startY = useSharedValue(y + topActionsBar.height);
+  const deltaY = useSharedValue(0);
+  const endY = useDerivedValue(() => startY.value + deltaY.value);
+
+  const minY = topActionsBar.height;
+  const maxY = topActionsBar.height + cropArea.height - imageContainer.height;
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      deltaY.value = e.translationY;
+      runOnJS(dispatchY)(endY.value);
+    })
+    .onEnd(() => {
+      startY.value = endY.value;
+      deltaY.value = 0;
+
+      if (startY.value > minY) {
+        startY.value = withTiming(minY, animationConfig, () => {
+          runOnJS(dispatchY)(minY);
+        });
+      }
+
+      if (startY.value < maxY) {
+        startY.value = withTiming(maxY, animationConfig, () => {
+          runOnJS(dispatchY)(maxY);
+        });
+      }
+    });
 
   const animationConfig = {
     duration: 300,
@@ -44,30 +59,11 @@ const useImageSliderGesture = (
     reduceMotion: ReduceMotion.System,
   };
 
-  const pan = Gesture.Pan()
-    .onUpdate((e) => {
-      deltaY.value = e.translationY;
-      runOnJS(dispatchOffsetY)(updatedOffsetY.value);
-    })
-    .onEnd(() => {
-      originalOffsetY.value = updatedOffsetY.value;
-      deltaY.value = 0;
-      if (originalOffsetY.value > UPPER_BOUND) {
-        originalOffsetY.value = withTiming(UPPER_BOUND, animationConfig, () => {
-          runOnJS(dispatchOffsetY)(UPPER_BOUND);
-        });
-      } else if (originalOffsetY.value < LOWER_BOUND) {
-        originalOffsetY.value = withTiming(LOWER_BOUND, animationConfig, () => {
-          runOnJS(dispatchOffsetY)(LOWER_BOUND);
-        });
-      }
-    });
-
   const tap = Gesture.Tap().onBegin(() => {});
 
   const composedGesture = Gesture.Race(pan, tap);
 
-  return { composedGesture, updatedOffsetY };
+  return { composedGesture, endY };
 };
 
 export default useImageSliderGesture;

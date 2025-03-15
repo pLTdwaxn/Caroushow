@@ -3,6 +3,7 @@ import { ImageState, ImagePickerAsset } from '@/types';
 
 const initialState: ImageState = {
   asset: null,
+  aspectRatio: 1,
 };
 
 const imageSlice = createSlice({
@@ -11,9 +12,11 @@ const imageSlice = createSlice({
   reducers: {
     setImage: (state, action: PayloadAction<ImagePickerAsset>) => {
       state.asset = action.payload;
+      state.aspectRatio = action.payload.height / action.payload.width;
     },
     resetImage: (state) => {
       state.asset = null;
+      state.aspectRatio = 1;
     },
   },
 });

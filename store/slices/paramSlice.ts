@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { setCropArea } from './appSlice';
 
 const initialState = {
-  offsetY: 0,
+  y: 0,
   aspectRatio: 1,
   slices: 3,
 };
@@ -10,8 +11,8 @@ const paramSlice = createSlice({
   name: 'param',
   initialState,
   reducers: {
-    setOffsetY: (state, action: PayloadAction<number>) => {
-      state.offsetY = action.payload;
+    setY: (state, action: PayloadAction<number>) => {
+      state.y = action.payload;
     },
     setAspectRatio: (state, action: PayloadAction<number>) => {
       state.aspectRatio = action.payload;
@@ -20,7 +21,12 @@ const paramSlice = createSlice({
       state.slices = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(setCropArea, (state, action) => {
+      state.aspectRatio = action.payload.height / action.payload.width;
+    });
+  },
 });
 
-export const { setOffsetY, setAspectRatio, setSlices } = paramSlice.actions;
+export const { setY, setAspectRatio, setSlices } = paramSlice.actions;
 export default paramSlice.reducer;

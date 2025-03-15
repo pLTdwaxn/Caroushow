@@ -26,19 +26,21 @@ export const cycleSlices = () => {
 
 export const sliceImage = () => {
   const { uri, width } = store.getState().image.asset;
-  const { offsetY, aspectRatio, slices } = store.getState().param;
-  const { screenWidth, topActionsBarHeight } = store.getState().device;
+  const { y, aspectRatio, slices } = store.getState().param;
+  const { screen, topActionsBar } = store.getState().app;
+  const { width: screenWidth } = screen;
+  const { height: topActionsBarHeight } = topActionsBar;
 
   const sliceWidth = Math.floor(width / slices);
-  const correctedOffsetY = Math.floor(
-    (topActionsBarHeight - offsetY) * (width / (screenWidth * slices))
+  const correctedy = Math.floor(
+    (topActionsBarHeight - y) * (width / (screenWidth * slices))
   );
   const calculatedHeight = Math.floor(sliceWidth * aspectRatio);
 
   const actions = Array.from({ length: slices }, (_, i) => ({
     crop: {
       originX: i * sliceWidth,
-      originY: correctedOffsetY,
+      originY: correctedy,
       width: sliceWidth,
       height: calculatedHeight,
     },
