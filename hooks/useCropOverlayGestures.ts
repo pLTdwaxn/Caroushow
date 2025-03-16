@@ -53,7 +53,10 @@ export const useCropOverlayGestures = () => {
     const nextRatio =
       aspectRatioList.find((ratio) => ratio.decimal > aspectRatio) ||
       aspectRatioList[0];
-    const nextHeight = nextRatio.decimal * width;
+    const nextHeight =
+      nextRatio.decimal * width > maxHeight
+        ? aspectRatioList[0].decimal * width
+        : nextRatio.decimal * width;
 
     startHeight.value = withTiming(nextHeight, animationConfig, () => {
       runOnJS(dispatchNewHeight)(startHeight.value);
