@@ -18,6 +18,9 @@ declare module '@/types' {
     cropShade: {
       y: number;
     };
+    dragHandle: {
+      aspectRatioLabel: number | string;
+    };
   }
 
   export interface ImageState {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { BlurView } from 'expo-blur';
 
@@ -7,13 +7,25 @@ import { ParamState, RootState, socialMediaState } from '@/types';
 import { connect } from 'react-redux';
 
 import { cycleSlices } from '@/utils/utils';
+import {
+  Gesture,
+  GestureDetector,
+  TapGesture,
+} from 'react-native-gesture-handler';
 
 type DragHandleProps = {
+  aspectRatioLabel: number | string;
   param: ParamState;
   socialMedia: socialMediaState;
+  tapOnAspectRatioLabel: TapGesture;
 };
 
-const DragHandle = ({ param, socialMedia }: DragHandleProps) => {
+const DragHandle = ({
+  aspectRatioLabel,
+  param,
+  socialMedia,
+  tapOnAspectRatioLabel,
+}: DragHandleProps) => {
   const { aspectRatio, slices } = param;
   const colors = () =>
     aspectRatio < socialMedia.minRatio || aspectRatio > socialMedia.maxRatio
@@ -25,14 +37,14 @@ const DragHandle = ({ param, socialMedia }: DragHandleProps) => {
       <View style={styles.flexItem}>
         <Text style={styles.aspectRatioLabel}></Text>
       </View>
-      <View style={styles.flexItem}>
-        <Text style={styles.aspectRatioLabel} onPress={cycleSlices}>
-          {slices.toString()}
-        </Text>
-      </View>
-      <View style={styles.flexItem}>
-        <Text style={styles.aspectRatioLabel}>{aspectRatio.toFixed(3)}</Text>
-      </View>
+      <TouchableOpacity style={styles.flexItem} onPress={cycleSlices}>
+        <Text style={styles.aspectRatioLabel}>{slices.toString()}</Text>
+      </TouchableOpacity>
+      <GestureDetector gesture={tapOnAspectRatioLabel}>
+        <View style={styles.flexItem}>
+          <Text style={styles.aspectRatioLabel}>{aspectRatioLabel}</Text>
+        </View>
+      </GestureDetector>
     </BlurView>
   );
 };
@@ -56,6 +68,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: RootState) => ({
+  aspectRatioLabel: state.app.dragHandle.aspectRatioLabel,
   param: state.param,
   socialMedia: state.socialMedia,
 });

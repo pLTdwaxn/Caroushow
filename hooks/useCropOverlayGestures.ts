@@ -11,10 +11,12 @@ import {
 import { useDispatch } from 'react-redux';
 import store from '@/store';
 import { setCropArea } from '@/store/slices/appSlice';
+import { aspectRatioList } from '@/fixtures/aspectRatioLists';
 
 export const useCropOverlayGestures = () => {
   const state = store.getState();
   const { width, height, minHeight, maxHeight } = state.app.cropArea;
+  const aspectRatio = state.param.aspectRatio;
 
   const dispatch = useDispatch();
   const dispatchNewHeight = (newHeight: number) => {
@@ -47,6 +49,17 @@ export const useCropOverlayGestures = () => {
       }
     });
 
+  const tapOnAspectRatioLabel = Gesture.Tap().onEnd(() => {
+    const nextRatio =
+      aspectRatioList.find((ratio) => ratio.decimal > aspectRatio) ||
+      aspectRatioList[0];
+    const nextHeight = nextRatio.decimal * width;
+
+    startHeight.value = withTiming(nextHeight, animationConfig, () => {
+      runOnJS(dispatchNewHeight)(startHeight.value);
+    });
+  });
+
   const animationConfig = {
     duration: 300,
     easing: Easing.inOut(Easing.poly(4)),
@@ -59,6 +72,7 @@ export const useCropOverlayGestures = () => {
 
   return {
     composedGesture,
+    tapOnAspectRatioLabel,
     endHeight,
   };
 };

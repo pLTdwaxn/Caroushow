@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prettier package and its config
 - A button to cycle the slices the image will be cut into
 - Limit the panning of image to where the drag handle is
+- Clicking on the aspect ratio label cycles through a predefined list
+- The aspect ratio label shows the fraction value of common aspect ratii
 
 ### Changed
 

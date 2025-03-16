@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppState } from '@/types';
 import { setSocialMedia } from './socialMediaSlice';
+import { setAspectRatio } from './paramSlice';
+import { aspectRatioList } from '@/fixtures/aspectRatioLists';
 
 const initialState: AppState = {
   screen: {
@@ -18,6 +20,9 @@ const initialState: AppState = {
   },
   cropShade: {
     y: 0,
+  },
+  dragHandle: {
+    aspectRatioLabel: 1,
   },
 };
 
@@ -42,9 +47,26 @@ const appSlice = createSlice({
       }>
     ) => {
       Object.assign(state.cropArea, action.payload);
+
+      const aspectRatio = Number(
+        (action.payload.height / action.payload.width).toFixed(3)
+      );
+
+      const matchingAspectRatio = aspectRatioList.find(
+        (item) => item.decimal === aspectRatio
+      );
+
+      if (matchingAspectRatio) {
+        state.dragHandle.aspectRatioLabel = `${matchingAspectRatio.w} : ${matchingAspectRatio.h}`;
+      } else {
+        state.dragHandle.aspectRatioLabel = aspectRatio;
+      }
     },
     setCropShade: (state, action: PayloadAction<{ y: number }>) => {
       state.cropShade = action.payload;
+    },
+    setAspectRatioLabel: (state, action: PayloadAction<number>) => {
+      state.dragHandle.aspectRatioLabel = action.payload;
     },
   }),
   extraReducers: (builder) => {
@@ -55,6 +77,11 @@ const appSlice = createSlice({
   },
 });
 
-export const { setScreen, setTopActionsBar, setCropArea, setCropShade } =
-  appSlice.actions;
+export const {
+  setScreen,
+  setTopActionsBar,
+  setCropArea,
+  setCropShade,
+  setAspectRatioLabel,
+} = appSlice.actions;
 export default appSlice.reducer;

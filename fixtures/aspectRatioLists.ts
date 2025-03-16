@@ -1,8 +1,12 @@
-const aspectRatioList = [
-  { w: 12, h: 12, fraction: '1:1', decimal: 1.0 }, // 1.0
-  { w: 12, h: 15, fraction: '5:4', decimal: 1.25 }, // 0.8
-  { w: 12, h: 16, fraction: '4:3', decimal: 1.33 }, // 0.75
-  { w: 12, h: 18, fraction: '3:2', decimal: 1.5 }, // 0.67
+export const aspectRatioList = [
+  { decimal: 0.563, w: 9, h: 16 },
+  { decimal: 0.6, w: 3, h: 5 },
+  { decimal: 0.667, w: 2, h: 3 },
+  { decimal: 0.714, w: 5, h: 7 },
+  { decimal: 0.75, w: 3, h: 4 },
+  { decimal: 0.8, w: 4, h: 5 },
+  { decimal: 1, w: 1, h: 1 },
+  { decimal: 1.25, w: 5, h: 4 },
+  { decimal: 1.33, w: 4, h: 3 },
+  { decimal: 1.5, w: 3, h: 2 },
 ];
-
-export default aspectRatioList;
