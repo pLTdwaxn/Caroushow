@@ -16,7 +16,8 @@ type CropOverlayProps = {
 };
 
 const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
-  const { composedGesture, endHeight } = useCropOverlayGestures();
+  const { composedGesture, tapOnAspectRatioLabel, endHeight } =
+    useCropOverlayGestures();
 
   const animatedStyle = useAnimatedStyle(() => ({
     height: endHeight.value,
@@ -30,7 +31,7 @@ const CropOverlay = ({ screenWidth, aspectRatio }: CropOverlayProps) => {
       />
 
       <GestureDetector gesture={composedGesture}>
-        <DragHandle />
+        <DragHandle tapOnAspectRatioLabel={tapOnAspectRatioLabel} />
       </GestureDetector>
 
       <BlurView

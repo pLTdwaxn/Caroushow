@@ -23,7 +23,9 @@ const paramSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(setCropArea, (state, action) => {
-      state.aspectRatio = action.payload.height / action.payload.width;
+      state.aspectRatio = Number(
+        (action.payload.height / action.payload.width).toFixed(3)
+      );
     });
   },
 });
